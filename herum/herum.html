@@ -10,7 +10,7 @@
         body {
             font-family: 'Assistant', sans-serif;
             background-color: #020617;
-            /* Static dark background with thin diagonal lines */
+            /* רקע קווים אלכסוניים סטטי */
             background-image: repeating-linear-gradient(
                 -45deg,
                 transparent,
@@ -24,7 +24,7 @@
             position: relative;
         }
 
-        /* Transparent background image (Watermark) */
+        /* תמונת רקע שקופה (Watermark) */
         .bg-image-overlay {
             position: fixed;
             top: 50%;
@@ -43,7 +43,7 @@
             filter: brightness(1.1);
         }
 
-        /* Decorative background blobs */
+        /* אלמנטים צבעוניים ברקע */
         .bg-blob {
             position: fixed;
             width: 500px;
@@ -66,7 +66,7 @@
             justify-content: center;
         }
         
-        /* Floating cards - Color #3A8B95 with 70% transparency (0.3 opacity) */
+        /* כרטיסים מרחפים - צבע #3A8B95 עם 70% שקיפות */
         .floating-card {
             background: rgba(58, 139, 149, 0.3); 
             backdrop-filter: blur(8px);
@@ -74,12 +74,21 @@
             border-radius: 1.5rem;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
             transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+            cursor: grab;
+        }
+
+        .floating-card:active {
+            cursor: grabbing;
+        }
+
+        .floating-card.dragging {
+            opacity: 0.5;
+            transform: scale(0.98);
         }
 
         .floating-card:hover {
             transform: translateY(-10px);
             background: rgba(58, 139, 149, 0.45);
-            box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.95);
         }
 
         .accordion-content {
@@ -152,15 +161,30 @@
         td, th {
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        .save-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            background: rgba(16, 185, 129, 0.9);
+            color: white;
+            border-radius: 99px;
+            font-size: 12px;
+            font-weight: bold;
+            display: none;
+            z-index: 200;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
     </style>
 </head>
 <body class="pb-20 text-right" dir="rtl">
 
-    <!-- Background Layers -->
     <div class="bg-image-overlay"></div>
     <div class="bg-blob blob-blue"></div>
     <div class="bg-blob blob-red"></div>
     <div class="bg-blob blob-orange"></div>
+    <div id="saveIndicator" class="save-indicator">נשמר בענן...</div>
 
     <!-- Contact Modal -->
     <div id="contactModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 md:p-8 text-right">
@@ -184,94 +208,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- תקשורת וחברה -->
-                        <tr>
-                            <td class="p-4 font-bold text-cyan-400" rowspan="5">תקשורת וחברה</td>
-                            <td class="p-4">רחלי קרחי לוי</td>
-                            <td class="p-4">מדריכת מחוז צפון</td>
-                            <td class="p-4">054-5951622</td>
-                            <td class="p-4">rachelikarhi@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">נועה לאופר</td>
-                            <td class="p-4">מדריכת מחוז מרכז</td>
-                            <td class="p-4">054-7773487</td>
-                            <td class="p-4">lauferno@013.net.il</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">חנית גרטמן דקל</td>
-                            <td class="p-4">מדריכת מחוז מרכז ול.מ.ד</td>
-                            <td class="p-4">052-2543454</td>
-                            <td class="p-4">hanidekel@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">ענבל בר זאב</td>
-                            <td class="p-4">מדריכת מחוז דרום</td>
-                            <td class="p-4">054-9219929</td>
-                            <td class="p-4">inbalqm@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">איבאא ח'טיב נסאר</td>
-                            <td class="p-4">מדריכת מקצוע מוביל - סקטור ערבי</td>
-                            <td class="p-4">050-7316839</td>
-                            <td class="p-4">ebaa93@gmail.com</td>
-                        </tr>
-                        <!-- עיתונאות -->
-                        <tr class="bg-white/5">
-                            <td class="p-4 font-bold text-amber-400">עיתונאות ופרסום בדיגיטל</td>
-                            <td class="p-4">ורד קורלנדר</td>
-                            <td class="p-4">מדריכה ארצית</td>
-                            <td class="p-4">052-5211677</td>
-                            <td class="p-4">vkurlender@gmail.com</td>
-                        </tr>
-                        <!-- צילום -->
-                        <tr>
-                            <td class="p-4 font-bold text-sky-400">צילום</td>
-                            <td class="p-4">מיכל רונן</td>
-                            <td class="p-4">מדריכה ארצית</td>
-                            <td class="p-4">054-5251275</td>
-                            <td class="p-4">michallronen1@gmail.com</td>
-                        </tr>
-                        <!-- פודקסטים -->
-                        <tr class="bg-white/5">
-                            <td class="p-4 font-bold text-emerald-400">הפקות פודקסטים</td>
-                            <td class="p-4">איתי בן טל</td>
-                            <td class="p-4">מדריך ארצי</td>
-                            <td class="p-4">054-5205707</td>
-                            <td class="p-4">itay24@gmail.com</td>
-                        </tr>
-                        <!-- קולנוע -->
-                        <tr>
-                            <td class="p-4 font-bold text-rose-400" rowspan="5">הפקות קולנוע</td>
-                            <td class="p-4">מושיקו הקמן</td>
-                            <td class="p-4">מדריך מחוז צפון</td>
-                            <td class="p-4">050-8664888</td>
-                            <td class="p-4">hackman.moshe@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">תיקי הראל</td>
-                            <td class="p-4">מדריכת מחוז דרום</td>
-                            <td class="p-4">054-6464026</td>
-                            <td class="p-4">tikiwork1@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">אבישי קליינמן</td>
-                            <td class="p-4">מדריך מחוז מרכז</td>
-                            <td class="p-4">052-3655417</td>
-                            <td class="p-4">avishayk@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">טומי כהן</td>
-                            <td class="p-4">מדריך 2110</td>
-                            <td class="p-4">054-5298478</td>
-                            <td class="p-4">tommyco89@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">מוחמד עתאמנה</td>
-                            <td class="p-4">מדריך התמחות בהפקות קולנוע - סקטור ערבי</td>
-                            <td class="p-4">052-4702152</td>
-                            <td class="p-4">--</td>
-                        </tr>
+                        <tr><td class="p-4 font-bold text-cyan-400" rowspan="5">תקשורת וחברה</td><td class="p-4">רחלי קרחי לוי</td><td class="p-4">מדריכת מחוז צפון</td><td class="p-4">054-5951622</td><td class="p-4">rachelikarhi@gmail.com</td></tr>
+                        <tr><td class="p-4">נועה לאופר</td><td class="p-4">מדריכת מחוז מרכז</td><td class="p-4">054-7773487</td><td class="p-4">lauferno@013.net.il</td></tr>
+                        <tr><td class="p-4">חנית גרטמן דקל</td><td class="p-4">מדריכת מחוז מרכז ול.מ.ד</td><td class="p-4">052-2543454</td><td class="p-4">hanidekel@gmail.com</td></tr>
+                        <tr><td class="p-4">ענבל בר זאב</td><td class="p-4">מדריכת מחוז דרום</td><td class="p-4">054-9219929</td><td class="p-4">inbalqm@gmail.com</td></tr>
+                        <tr><td class="p-4">איבאא ח'טיב נסאר</td><td class="p-4">מדריכת מקצוע מוביל - סקטור ערבי</td><td class="p-4">050-7316839</td><td class="p-4">ebaa93@gmail.com</td></tr>
+                        <tr class="bg-white/5"><td class="p-4 font-bold text-amber-400">עיתונאות ופרסום בדיגיטל</td><td class="p-4">ורד קורלנדר</td><td class="p-4">מדריכה ארצית</td><td class="p-4">052-5211677</td><td class="p-4">vkurlender@gmail.com</td></tr>
+                        <tr><td class="p-4 font-bold text-sky-400">צילום</td><td class="p-4">מיכל רונן</td><td class="p-4">מדריכה ארצית</td><td class="p-4">054-5251275</td><td class="p-4">michallronen1@gmail.com</td></tr>
+                        <tr class="bg-white/5"><td class="p-4 font-bold text-emerald-400">הפקות פודקסטים</td><td class="p-4">איתי בן טל</td><td class="p-4">מדריך ארצי</td><td class="p-4">054-5205707</td><td class="p-4">itay24@gmail.com</td></tr>
+                        <tr><td class="p-4 font-bold text-rose-400" rowspan="5">הפקות קולנוע</td><td class="p-4">מושיקו הקמן</td><td class="p-4">מדריך מחוז צפון</td><td class="p-4">050-8664888</td><td class="p-4">hackman.moshe@gmail.com</td></tr>
+                        <tr><td class="p-4">תיקי הראל</td><td class="p-4">מדריכת מחוז דרום</td><td class="p-4">054-6464026</td><td class="p-4">tikiwork1@gmail.com</td></tr>
+                        <tr><td class="p-4">אבישי קליינמן</td><td class="p-4">מדריך מחוז מרכז</td><td class="p-4">052-3655417</td><td class="p-4">avishayk@gmail.com</td></tr>
+                        <tr><td class="p-4">טומי כהן</td><td class="p-4">מדריך 2110</td><td class="p-4">054-5298478</td><td class="p-4">tommyco89@gmail.com</td></tr>
+                        <tr><td class="p-4">מוחמד עתאמנה</td><td class="p-4">מדריך התמחות בהפקות קולנוע - סקטור ערבי</td><td class="p-4">052-4702152</td><td class="p-4">--</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -306,11 +255,14 @@
                 שלום לכולם 🖐️<br>
                 ריכזנו עבורכם את כל הידע, הכלים והמשימות במרחב דיגיטלי אחד ומעודכן.
             </p>
+            <p class="mt-4 text-slate-400 text-sm">ניתן לגרור את המשבצות כדי לשנות את הסדר שלהן.</p>
         </section>
 
-        <!-- Category: Lead Subject -->
-        <div class="mb-12">
-            <div class="floating-card overflow-hidden">
+        <!-- Draggable Container -->
+        <div id="sortableContainer" class="space-y-12">
+            
+            <!-- Category: Lead Subject -->
+            <div id="card-lead" class="floating-card overflow-hidden" draggable="true">
                 <button onclick="toggleAccordion('lead-subject')" class="w-full flex justify-between items-center p-8 hover:bg-white/5 transition-colors">
                     <div class="flex items-center gap-6 text-right">
                         <div class="relief-icon bg-cyan-700 border border-cyan-400/50 p-4 rounded-2xl text-white shadow-2xl">
@@ -319,7 +271,7 @@
                             </svg>
                         </div>
                         <div class="text-right">
-                            <span class="block text-cyan-100 text-sm font-extrabold uppercase tracking-wider mb-1 drop-shadow-sm">מקצוע מוביל</span>
+                            <span class="block text-cyan-100 text-sm font-extrabold uppercase tracking-wider mb-1 drop-shadow-sm text-right">מקצוע מוביל</span>
                             <span class="text-3xl font-bold text-white drop-shadow-lg text-right">תקשורת וחברה</span>
                         </div>
                     </div>
@@ -328,7 +280,11 @@
                     </svg>
                 </button>
                 <div id="content-lead-subject" class="accordion-content">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 text-right">
+                        <a href="https://meyda.education.gov.il/files/madaTech/tikshoret/Tikshoret2025.pdf" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
+                            <span class="text-2xl sub-relief">📑</span>
+                            <span class="font-bold">תוכנית הלימודים</span>
+                        </a>
                         <a href="https://hakolbakaf.co.il/agron/index.html" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
                             <span class="text-2xl sub-relief">📖</span>
                             <span class="font-bold">אגרון מושגים</span>
@@ -365,53 +321,74 @@
                             <span class="text-2xl sub-relief">🤝</span>
                             <span class="font-bold">שיתוף מערכים</span>
                         </a>
-                        <a href="https://hakolbakaf.co.il/lamedprojekt/hadash/index.html" target="_blank" class="lg:col-span-3 sub-link p-6 rounded-2xl flex items-center justify-center gap-6 border-2 border-orange-400 bg-orange-100 hover:bg-orange-200">
-                            <span class="text-4xl sub-relief text-orange-600">🚀</span>
+                        <a href="https://hakolbakaf.co.il/lamedprojekt/hadash/index.html" target="_blank" class="lg:col-span-3 sub-link p-6 rounded-2xl flex items-center justify-center gap-6">
+                            <span class="text-4xl sub-relief">🚀</span>
                             <span class="text-2xl font-black tracking-wider text-center">פרוייקט ל.מ.ד - הכנה מקיפה לבגרות</span>
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <h2 class="text-3xl font-bold mb-8 text-white flex items-center gap-4 px-2 drop-shadow-lg">
-            <span class="w-12 h-1.5 bg-white rounded-full shadow-xl"></span>
-            מקצועות התמחות
-            <span class="flex-grow h-0.5 bg-white/20"></span>
-        </h2>
-
-        <!-- Specialization Stack -->
-        <div class="space-y-8">
-            <div class="floating-card overflow-hidden">
+            <!-- Category: Cinema -->
+            <div id="card-cinema" class="floating-card overflow-hidden" draggable="true">
                 <button onclick="toggleAccordion('cinema')" class="w-full flex justify-between items-center p-7 hover:bg-white/10 transition-colors text-right">
-                    <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-6 text-right">
                         <div class="relief-icon bg-rose-700 border border-rose-400/50 p-3.5 rounded-2xl text-white shadow-xl">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
                         </div>
-                        <span class="text-2xl font-bold text-white drop-shadow-lg">הפקות קולנוע</span>
+                        <span class="text-2xl font-bold text-white drop-shadow-lg text-right">הפקות קולנוע</span>
                     </div>
-                    <svg id="icon-cinema" class="rotate-icon w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                    <svg id="icon-cinema" class="rotate-icon w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
+                    </svg>
                 </button>
                 <div id="content-cinema" class="accordion-content">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="sub-link p-5 rounded-xl flex items-center gap-4"><span class="text-3xl sub-relief">📽️</span> <span class="font-bold">מדריכי צילום מהבית</span></div>
-                        <div class="sub-link p-5 rounded-xl flex items-center gap-4"><span class="text-3xl sub-relief">✂️</span> <span class="font-bold">תוכנות עריכה מומלצות</span></div>
+                        <a href="https://drive.google.com/drive/folders/1M-jdwAv9Vtndgq7GtFZOEbUXMPzUP2aa?usp=sharing" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
+                            <span class="text-3xl sub-relief">📚</span>
+                            <span class="font-bold">ספרים לעיון</span>
+                        </a>
+                        <a href="https://meyda.education.gov.il/files/madaTech/tikshoret/Film-OpticCuriculum.pdf" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
+                            <span class="text-3xl sub-relief">🔬</span>
+                            <span class="font-bold">תוכנית הלימודים באופטיקה יישומית</span>
+                        </a>
+                        <a href="https://itaibental.github.io/cinema-mazagot/" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
+                            <span class="text-3xl sub-relief">📽️</span>
+                            <span class="font-bold">מצגות ומערכי שיעור לפי נושאים</span>
+                        </a>
+                        <a href="https://hakolbakaf.co.il/kolnoa/index.html" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
+                            <span class="text-3xl sub-relief">🎬</span>
+                            <span class="font-bold">שיעורים לפי שכבות</span>
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <div class="floating-card overflow-hidden">
+            <!-- Category: Journalism -->
+            <div id="card-journalism" class="floating-card overflow-hidden" draggable="true">
                 <button onclick="toggleAccordion('journalism')" class="w-full flex justify-between items-center p-7 hover:bg-white/10 transition-colors text-right">
-                    <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-6 text-right">
                         <div class="relief-icon bg-amber-700 border border-amber-400/50 p-3.5 rounded-2xl text-white shadow-xl">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg>
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                            </svg>
                         </div>
-                        <span class="text-2xl font-bold text-white drop-shadow-lg">עיתונאות ופרסום בדיגיטל</span>
+                        <span class="text-2xl font-bold text-white drop-shadow-lg text-right">עיתונאות ופרסום בדיגיטל</span>
                     </div>
-                    <svg id="icon-journalism" class="rotate-icon w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                    <svg id="icon-journalism" class="rotate-icon w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
+                    </svg>
                 </button>
                 <div id="content-journalism" class="accordion-content">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-right">
+                        <a href="https://meyda.education.gov.il/files/madaTech/tikshoret/Journalism2025.pdf" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
+                            <span class="text-3xl sub-relief">📑</span> <span class="font-bold">מתווה פרוייקט הגמר</span>
+                        </a>
+                        <a href="https://app.smore.com/n/a3hcq" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
+                            <span class="text-3xl sub-relief">🔍</span> <span class="font-bold">פירוט לפי נושאים</span>
+                        </a>
                         <a href="https://classroom.google.com/c/NjMyODY3MDg0NDYz" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group"><span class="text-3xl sub-relief">🏫</span> <span class="font-bold">קלאסרום שיתופי</span></a>
                         <a href="https://drive.google.com/drive/folders/1dPTu98hE-YYZy3fGpsMtVtUB92DUY2jf?usp=drive_link" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group"><span class="text-3xl sub-relief">📑</span> <span class="font-bold">מערכי שיעור</span></a>
                         <a href="https://drive.google.com/drive/folders/1gT3DmnTEOWxjr7OilBAAT4mtMkINm4sV?usp=drive_link" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group"><span class="text-3xl sub-relief text-orange-600 font-bold">🤖</span> <span class="font-bold text-slate-800">השתלמות AI תשפ"ד</span></a>
@@ -420,18 +397,27 @@
                 </div>
             </div>
 
-            <div class="floating-card overflow-hidden">
+            <!-- Category: Podcast -->
+            <div id="card-podcast" class="floating-card overflow-hidden" draggable="true">
                 <button onclick="toggleAccordion('podcast')" class="w-full flex justify-between items-center p-7 hover:bg-white/10 transition-colors text-right">
-                    <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-6 text-right">
                         <div class="relief-icon bg-emerald-700 border border-emerald-400/50 p-3.5 rounded-2xl text-white shadow-xl">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                            </svg>
                         </div>
-                        <span class="text-2xl font-bold text-white drop-shadow-lg">הפקות פודקסטים</span>
+                        <span class="text-2xl font-bold text-white drop-shadow-lg text-right">הפקות פודקסטים</span>
                     </div>
-                    <svg id="icon-podcast" class="rotate-icon w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                    <svg id="icon-podcast" class="rotate-icon w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
+                    </svg>
                 </button>
                 <div id="content-podcast" class="accordion-content">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <a href="https://meyda.education.gov.il/files/madaTech/tikshoret/PodcastRadio2025.pdf" target="_blank" class="sub-link p-4 rounded-xl flex items-center gap-3 group">
+                            <span class="text-2xl sub-relief text-orange-600 font-bold">📑</span> 
+                            <span class="text-sm font-bold">מתווה פרוייקט הגמר</span>
+                        </a>
                         <a href="https://www.canva.com/design/DAGJ8mpL5Q8/8czIky9JKrb0DnWkUL_-0w/view" target="_blank" class="sub-link p-4 rounded-xl flex items-center gap-3"><span class="text-2xl sub-relief text-orange-600 font-bold">🎙️</span> <span class="text-sm font-bold">מבוא לפודקסטים</span></a>
                         <a href="https://www.canva.com/design/DAGJ-BtmEYc/3zj8hr1vVMc-1jEF5W0h1g/view" target="_blank" class="sub-link p-4 rounded-xl flex items-center gap-3"><span class="text-2xl sub-relief text-orange-600 font-bold">🎤</span> <span class="text-sm font-bold">הדרכה טכנית</span></a>
                         <a href="https://www.canva.com/design/DAGKAMYY2hY/F_lZlNgttNu4pRgCOMqR2w/view" target="_blank" class="sub-link p-4 rounded-xl flex items-center gap-3"><span class="text-2xl sub-relief text-orange-600 font-bold">🎧</span> <span class="text-sm font-bold">עריכת סאונד</span></a>
@@ -442,65 +428,229 @@
                 </div>
             </div>
 
-            <div class="floating-card overflow-hidden">
+            <!-- Category: Photography -->
+            <div id="card-photo" class="floating-card overflow-hidden" draggable="true">
                 <button onclick="toggleAccordion('photo')" class="w-full flex justify-between items-center p-7 hover:bg-white/10 transition-colors text-right">
-                    <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-6 text-right">
                         <div class="relief-icon bg-sky-700 border border-sky-400/50 p-3.5 rounded-2xl text-white shadow-xl">
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                         </div>
-                        <span class="text-2xl font-bold text-white drop-shadow-lg">צילום</span>
+                        <span class="text-2xl font-bold text-white drop-shadow-lg text-right">צילום</span>
                     </div>
                     <svg id="icon-photo" class="rotate-icon w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
                 <div id="content-photo" class="accordion-content">
-                    <div class="p-8 bg-blue-800/60 border border-blue-400/40 rounded-3xl text-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-center">
-                        <p class="text-2xl font-bold mb-3 flex items-center justify-center gap-2"><span class="sub-relief">📸</span> אתגר השבוע:</p>
-                        <p class="text-lg font-bold opacity-100 text-center">"הסיפור שמאחורי החלון" - צלמו סדרת תמונות שמביעה רגש מבעד לחלון הבית שלכם.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <a href="https://meyda.education.gov.il/files/madaTech/tikshoret/Photo-OpticnewCuriculum.pdf" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group md:col-span-2">
+                            <span class="text-3xl sub-relief">🔬</span>
+                            <span class="font-bold">תוכנית הלימודים באופטיקה יישומית</span>
+                        </a>
                     </div>
                 </div>
             </div>
+
+            <!-- Category: Colleges (GRADE 13-14) -->
+            <div id="card-colleges" class="floating-card overflow-hidden" draggable="true">
+                <button onclick="toggleAccordion('colleges')" class="w-full flex justify-between items-center p-7 hover:bg-white/10 transition-colors text-right">
+                    <div class="flex items-center gap-6">
+                        <div class="relief-icon bg-indigo-700 border border-indigo-400/50 p-3.5 rounded-2xl text-white shadow-xl">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                                <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                            </svg>
+                        </div>
+                        <span class="text-2xl font-bold text-white drop-shadow-lg text-right">מכללות י"ג י"ד</span>
+                    </div>
+                    <svg id="icon-colleges" class="rotate-icon w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div id="content-colleges" class="accordion-content">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <a href="https://pop.education.gov.il/tchumey_daat/communication-technologies/high-school/pedagogy-of/colleges/" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group md:col-span-2">
+                            <span class="text-3xl sub-relief">🎓</span>
+                            <span class="font-bold">מידע פדגוגי ונהלים - מכללות טכנולוגיות</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- Contact Section -->
-        <section class="mt-24 p-12 floating-card border-2 border-white/20 text-center relative overflow-hidden group">
+        <section class="mt-24 p-12 floating-card border-2 border-white/20 text-center relative overflow-hidden group" draggable="false">
             <div class="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             <h3 class="text-3xl font-extrabold text-white mb-4 relative z-10 text-center w-full">צריכים עזרה או הכוונה?</h3>
-            <p class="text-white relative z-10 text-xl font-bold drop-shadow-md text-center max-w-2xl mx-auto mb-10">
-                צוות מדריכי הפיקוח ישמח לתת לכם מענה בכל זמן.
-            </p>
+            <p class="text-white relative z-10 text-xl font-bold drop-shadow-md text-center max-w-2xl mx-auto mb-10">צוות מדריכי הפיקוח ישמח לתת לכם מענה בכל זמן.</p>
             <div class="relative z-10">
                 <button onclick="openModal()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-10 py-5 rounded-2xl font-bold shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex items-center gap-3 mx-auto border border-cyan-400">
-                    <span class="text-2xl sub-relief">📋</span> 
-                    <span>לרשימת פרטי הקשר של מדריכי הפיקוח לחצו כאן</span>
+                    <span class="text-2xl sub-relief">📋</span> <span>לרשימת פרטי הקשר של מדריכי הפיקוח לחצו כאן</span>
                 </button>
             </div>
         </section>
-
     </main>
 
     <footer class="mt-24 text-center text-slate-400 text-sm font-bold">
         <p>© מגמות טכנולוגיות תקשורת, מדיה ופרסום | לומדים, יוצרים ומנצחים יחד 🇮🇱</p>
     </footer>
 
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
+        import { getFirestore, doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
+
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'tikshoret-landing';
+
+        let user = null;
+        let lastSavedOrder = [];
+        let isDirty = false;
+        let initialLoadDone = false;
+
+        const init = async () => {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                onAuthStateChanged(auth, async (u) => {
+                    user = u;
+                    if (user && !initialLoadDone) {
+                        await loadOrder();
+                        initialLoadDone = true;
+                    }
+                });
+            } catch (err) {
+                console.error("Firebase init error:", err);
+            }
+        };
+
+        async function loadOrder() {
+            if (!auth.currentUser) return;
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'layout', 'settings');
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    const order = docSnap.data().order;
+                    if (order && Array.isArray(order)) {
+                        applyOrder(order);
+                        lastSavedOrder = [...order];
+                    }
+                } else {
+                    lastSavedOrder = getCurrentOrder();
+                }
+            } catch (err) {
+                console.error("Load failed:", err);
+            }
+        }
+
+        setInterval(async () => {
+            if (!auth.currentUser || !isDirty || !initialLoadDone) return;
+            const currentOrder = getCurrentOrder();
+            
+            if (JSON.stringify(currentOrder) === JSON.stringify(lastSavedOrder)) {
+                isDirty = false;
+                return;
+            }
+
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'layout', 'settings');
+                await setDoc(docRef, { order: currentOrder });
+                lastSavedOrder = [...currentOrder];
+                isDirty = false;
+                showIndicator();
+            } catch (err) {
+                console.error("Save failed:", err);
+            }
+        }, 4000);
+
+        function getCurrentOrder() {
+            return Array.from(document.querySelectorAll('#sortableContainer > div[id]')).map(el => el.id);
+        }
+
+        function applyOrder(order) {
+            const container = document.getElementById('sortableContainer');
+            order.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) container.appendChild(el);
+            });
+        }
+
+        function showIndicator() {
+            const ind = document.getElementById('saveIndicator');
+            ind.style.display = 'block';
+            setTimeout(() => ind.style.display = 'none', 2000);
+        }
+
+        const container = document.getElementById('sortableContainer');
+        container.addEventListener('dragstart', (e) => {
+            const card = e.target.closest('.floating-card');
+            if (card) card.classList.add('dragging');
+        });
+
+        container.addEventListener('dragend', (e) => {
+            const card = e.target.closest('.floating-card');
+            if (card) card.classList.remove('dragging');
+            isDirty = true;
+        });
+
+        container.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            const afterElement = getDragAfterElement(container, e.clientY);
+            const draggable = document.querySelector('.dragging');
+            if (draggable) {
+                if (afterElement == null) {
+                    container.appendChild(draggable);
+                } else {
+                    container.insertBefore(draggable, afterElement);
+                }
+            }
+        });
+
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.floating-card:not(.dragging)')];
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+
+        window.initApp = init;
+    </script>
+
     <script>
         function toggleAccordion(id) {
             const content = document.getElementById('content-' + id);
             const icon = document.getElementById('icon-' + id);
-            content.classList.toggle('active');
+            if (content) content.classList.toggle('active');
             if (icon) icon.classList.toggle('active');
         }
 
         function openModal() {
-            const modal = document.getElementById('contactModal');
-            modal.classList.remove('hidden');
+            document.getElementById('contactModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden'; 
         }
 
         function closeModal() {
-            const modal = document.getElementById('contactModal');
-            modal.classList.add('hidden');
+            document.getElementById('contactModal').classList.add('hidden');
             document.body.style.overflow = 'auto'; 
         }
+
+        window.onload = () => {
+            if (window.initApp) window.initApp();
+        };
     </script>
 </body>
 </html>
