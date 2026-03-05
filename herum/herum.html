@@ -75,6 +75,35 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
             transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
             cursor: grab;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .floating-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -120%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.18) 50%,
+                transparent 100%
+            );
+            transform: skewX(-20deg);
+            transition: none;
+            pointer-events: none;
+        }
+
+        .floating-card:hover::after {
+            animation: shimmer-sweep 1.6s ease forwards;
+        }
+
+        @keyframes shimmer-sweep {
+            0%   { right: -120%; }
+            100% { right: 160%; }
         }
 
         .floating-card:active {
@@ -208,18 +237,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td class="p-4 font-bold text-cyan-400" rowspan="5">תקשורת וחברה</td><td class="p-4">רחלי קרחי לוי</td><td class="p-4">מדריכת מחוז צפון</td><td class="p-4">054-5951622</td><td class="p-4">rachelikarhi@gmail.com</td></tr>
-                        <tr><td class="p-4">נועה לאופר</td><td class="p-4">מדריכת מחוז מרכז</td><td class="p-4">054-7773487</td><td class="p-4">lauferno@013.net.il</td></tr>
-                        <tr><td class="p-4">חנית גרטמן דקל</td><td class="p-4">מדריכת מחוז מרכז ול.מ.ד</td><td class="p-4">052-2543454</td><td class="p-4">hanidekel@gmail.com</td></tr>
-                        <tr><td class="p-4">ענבל בר זאב</td><td class="p-4">מדריכת מחוז דרום</td><td class="p-4">054-9219929</td><td class="p-4">inbalqm@gmail.com</td></tr>
-                        <tr><td class="p-4">איבאא ח'טיב נסאר</td><td class="p-4">מדריכת מקצוע מוביל - סקטור ערבי</td><td class="p-4">050-7316839</td><td class="p-4">ebaa93@gmail.com</td></tr>
-                        <tr class="bg-white/5"><td class="p-4 font-bold text-amber-400">עיתונאות ופרסום בדיגיטל</td><td class="p-4">ורד קורלנדר</td><td class="p-4">מדריכה ארצית</td><td class="p-4">052-5211677</td><td class="p-4">vkurlender@gmail.com</td></tr>
-                        <tr><td class="p-4 font-bold text-sky-400">צילום</td><td class="p-4">מיכל רונן</td><td class="p-4">מדריכה ארצית</td><td class="p-4">054-5251275</td><td class="p-4">michallronen1@gmail.com</td></tr>
-                        <tr class="bg-white/5"><td class="p-4 font-bold text-emerald-400">הפקות פודקסטים</td><td class="p-4">איתי בן טל</td><td class="p-4">מדריך ארצי</td><td class="p-4">054-5205707</td><td class="p-4">itay24@gmail.com</td></tr>
-                        <tr><td class="p-4 font-bold text-rose-400" rowspan="5">הפקות קולנוע</td><td class="p-4">מושיקו הקמן</td><td class="p-4">מדריך מחוז צפון</td><td class="p-4">050-8664888</td><td class="p-4">hackman.moshe@gmail.com</td></tr>
-                        <tr><td class="p-4">תיקי הראל</td><td class="p-4">מדריכת מחוז דרום</td><td class="p-4">054-6464026</td><td class="p-4">tikiwork1@gmail.com</td></tr>
-                        <tr><td class="p-4">אבישי קליינמן</td><td class="p-4">מדריך מחוז מרכז</td><td class="p-4">052-3655417</td><td class="p-4">avishayk@gmail.com</td></tr>
-                        <tr><td class="p-4">טומי כהן</td><td class="p-4">מדריך 2110</td><td class="p-4">054-5298478</td><td class="p-4">tommyco89@gmail.com</td></tr>
+                        <tr><td class="p-4 font-bold text-cyan-400" rowspan="5">תקשורת וחברה</td><td class="p-4">רחלי קרחי לוי</td><td class="p-4">מדריכת מחוז צפון</td><td class="p-4">054-5951622</td><td class="p-4"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="621003010a070e0b0903100a0b22050f030b0e4c010d0f">[email&#160;protected]</a></td></tr>
+                        <tr><td class="p-4">נועה לאופר</td><td class="p-4">מדריכת מחוז מרכז</td><td class="p-4">054-7773487</td><td class="p-4"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="137f72667576617d7c532322203d7d76673d7a7f">[email&#160;protected]</a></td></tr>
+                        <tr><td class="p-4">חנית גרטמן דקל</td><td class="p-4">מדריכת מחוז מרכז ול.מ.ד</td><td class="p-4">052-2543454</td><td class="p-4"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="29414847404d4c424c45694e44484045074a4644">[email&#160;protected]</a></td></tr>
+                        <tr><td class="p-4">ענבל בר זאב</td><td class="p-4">מדריכת מחוז דרום</td><td class="p-4">054-9219929</td><td class="p-4"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5d34333f3c312c301d3a303c3431733e3230">[email&#160;protected]</a></td></tr>
+                        <tr><td class="p-4">איבאא ח'טיב נסאר</td><td class="p-4">מדריכת מקצוע מוביל - סקטור ערבי</td><td class="p-4">050-7316839</td><td class="p-4"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b7d2d5d6d68e84f7d0dad6dedb99d4d8da">[email&#160;protected]</a></td></tr>
+                        <tr class="bg-white/5"><td class="p-4 font-bold text-amber-400">עיתונאות ופרסום בדיגיטל</td><td class="p-4">ורד קורלנדר</td><td class="p-4">מדריכה ארצית</td><td class="p-4">052-5211677</td><td class="p-4"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0c7a67797e60696268697e4c6b616d6560226f6361">[email&#160;protected]</a></td></tr>
+                        <tr><td class="p-4 font-bold text-sky-400">צילום</td><td class="p-4">מיכל רונן</td><td class="p-4">מדריכה ארצית</td><td class="p-4">054-5251275</td><td class="p-4"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="86ebefe5eee7eaeaf4e9e8e3e8b7c6e1ebe7efeaa8e5e9eb">[email&#160;protected]</a></td></tr>
+                        <tr class="bg-white/5"><td class="p-4 font-bold text-emerald-400">הפקות פודקסטים</td><td class="p-4">איתי בן טל</td><td class="p-4">מדריך ארצי</td><td class="p-4">054-5205707</td><td class="p-4"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8ee7faeff7bcbacee9e3efe7e2a0ede1e3">[email&#160;protected]</a></td></tr>
+                        <tr><td class="p-4 font-bold text-rose-400" rowspan="5">הפקות קולנוע</td><td class="p-4">מושיקו הקמן</td><td class="p-4">מדריך מחוז צפון</td><td class="p-4">050-8664888</td><td class="p-4"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0f676e6c64626e612162607c676a4f68626e6663216c6062">[email&#160;protected]</a></td></tr>
+                        <tr><td class="p-4">תיקי הראל</td><td class="p-4">מדריכת מחוז דרום</td><td class="p-4">054-6464026</td><td class="p-4"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f2869b999b859d8099c3b2959f939b9edc919d9f">[email&#160;protected]</a></td></tr>
+                        <tr><td class="p-4">אבישי קליינמן</td><td class="p-4">מדריך מחוז מרכז</td><td class="p-4">052-3655417</td><td class="p-4"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e382958a908b829a88a3848e828a8fcd808c8e">[email&#160;protected]</a></td></tr>
+                        <tr><td class="p-4">טומי כהן</td><td class="p-4">מדריך 2110</td><td class="p-4">054-5298478</td><td class="p-4"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2d59424040544e4215146d4a404c4441034e4240">[email&#160;protected]</a></td></tr>
                         <tr><td class="p-4">מוחמד עתאמנה</td><td class="p-4">מדריך התמחות בהפקות קולנוע - סקטור ערבי</td><td class="p-4">052-4702152</td><td class="p-4">--</td></tr>
                     </tbody>
                 </table>
@@ -327,6 +356,10 @@
                         <a href="https://hakolbakaf.co.il/morim/index.html" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
                             <span class="text-2xl sub-relief">🤝</span>
                             <span class="font-bold">שיתוף מערכים</span>
+                        </a>
+                        <a href="https://hakolbakaf.co.il/" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
+                            <span class="text-2xl sub-relief">📱</span>
+                            <span class="font-bold">הכל בכף היד</span>
                         </a>
                         <a href="https://hakolbakaf.co.il/lamedprojekt/hadash/index.html" target="_blank" class="lg:col-span-3 sub-link p-6 rounded-2xl flex items-center justify-center gap-6">
                             <span class="text-4xl sub-relief">🚀</span>
@@ -517,7 +550,7 @@
     </footer>
 
     <!-- Firebase SDK -->
-    <script type="module">
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
         import { getFirestore, doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
@@ -648,30 +681,75 @@
             }, { offset: Number.NEGATIVE_INFINITY }).element;
         }
 
-        window.initApp = init;
+        init();
     </script>
 
     <script>
         function toggleAccordion(id) {
             const content = document.getElementById('content-' + id);
             const icon = document.getElementById('icon-' + id);
-            if (content) content.classList.toggle('active');
-            if (icon) icon.classList.toggle('active');
+            if (!content) return;
+
+            const isActive = content.classList.contains('active');
+
+            // Close all
+            document.querySelectorAll('.accordion-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.rotate-icon').forEach(el => el.classList.remove('active'));
+
+            // Open clicked if it was closed
+            if (!isActive) {
+                content.classList.add('active');
+                if (icon) icon.classList.add('active');
+            }
         }
 
         function openModal() {
-            document.getElementById('contactModal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; 
+            const modal = document.getElementById('contactModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
         }
 
         function closeModal() {
-            document.getElementById('contactModal').classList.add('hidden');
-            document.body.style.overflow = 'auto'; 
+            const modal = document.getElementById('contactModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
         }
 
-        window.onload = () => {
-            if (window.initApp) window.initApp();
-        };
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // --- Sound Effect ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playClickSound() {
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.08);
+            gainNode.gain.setValueAtTime(0.25, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
+            osc.start(audioCtx.currentTime);
+            osc.stop(audioCtx.currentTime + 0.12);
+        }
+
+        // קטגוריות - כפתורי accordion
+        document.querySelectorAll('.floating-card button').forEach(btn => {
+            btn.addEventListener('click', playClickSound);
+        });
+
+        // משבצות פנימיות
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.sub-link')) playClickSound();
+        });
     </script>
 </body>
 </html>
