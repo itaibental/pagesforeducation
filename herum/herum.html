@@ -263,8 +263,8 @@
             
             <!-- Category: Lead Subject -->
             <div id="card-lead" class="floating-card overflow-hidden" draggable="true">
-                <button onclick="toggleAccordion('lead-subject')" class="w-full flex justify-between items-center p-8 hover:bg-white/5 transition-colors">
-                    <div class="flex items-center gap-6 text-right">
+                <button onclick="toggleAccordion('lead-subject')" class="w-full flex justify-between items-center p-8 hover:bg-white/5 transition-colors text-right">
+                    <div class="flex items-center gap-6">
                         <div class="relief-icon bg-cyan-700 border border-cyan-400/50 p-4 rounded-2xl text-white shadow-2xl">
                             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -272,7 +272,7 @@
                         </div>
                         <div class="text-right">
                             <span class="block text-cyan-100 text-sm font-extrabold uppercase tracking-wider mb-1 drop-shadow-sm text-right">מקצוע מוביל</span>
-                            <span class="text-3xl font-bold text-white drop-shadow-lg text-right">תקשורת וחברה</span>
+                            <span class="text-3xl font-bold text-white drop-shadow-lg">תקשורת וחברה</span>
                         </div>
                     </div>
                     <svg id="icon-lead-subject" class="rotate-icon w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -281,10 +281,7 @@
                 </button>
                 <div id="content-lead-subject" class="accordion-content">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 text-right">
-                        <a href="https://hakolbakaf.co.il/" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group bg-cyan-100">
-                            <span class="text-2xl sub-relief">🖐️</span>
-                            <span class="font-bold">הכל בכף היד</span>
-                        </a>
+                        <!-- שורה ראשונה -->
                         <a href="https://meyda.education.gov.il/files/madaTech/tikshoret/Tikshoret2025.pdf" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
                             <span class="text-2xl sub-relief">📑</span>
                             <span class="font-bold">תוכנית הלימודים</span>
@@ -297,6 +294,11 @@
                             <span class="text-2xl sub-relief">🌐</span>
                             <span class="font-bold">זירות הלימוד</span>
                         </a>
+                        <!-- שורה שנייה -->
+                        <a href="https://docs.google.com/document/d/1MQh6Ms0WM3IW8_RhD0poH3A532_WUsCFKurU8IpSwNk/edit?usp=drive_link" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
+                            <span class="text-2xl sub-relief">🌍</span>
+                            <span class="font-bold">חומרי לימוד בערבית / مواد تعليمية بالלغة العربية</span>
+                        </a>
                         <a href="https://hakolbakaf.co.il/2min/index.html" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
                             <span class="text-2xl sub-relief">⏱️</span>
                             <span class="font-bold">שתי דקות על</span>
@@ -305,6 +307,7 @@
                             <span class="text-2xl sub-relief">📰</span>
                             <span class="font-bold">אקטואליה ותוכנית</span>
                         </a>
+                        <!-- המשך -->
                         <a href="https://hakolbakaf.co.il/bagroot/mikood.html" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
                             <span class="text-2xl sub-relief">🎯</span>
                             <span class="font-bold">מיקוד קיץ תשפ"ו</span>
@@ -349,22 +352,31 @@
                     </svg>
                 </button>
                 <div id="content-cinema" class="accordion-content">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-right">
+                        <!-- שורה ראשונה -->
                         <a href="https://drive.google.com/drive/folders/1M-jdwAv9Vtndgq7GtFZOEbUXMPzUP2aa?usp=sharing" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
                             <span class="text-3xl sub-relief">📚</span>
                             <span class="font-bold">ספרים לעיון</span>
                         </a>
                         <a href="https://meyda.education.gov.il/files/madaTech/tikshoret/Film-OpticCuriculum.pdf" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
                             <span class="text-3xl sub-relief">🔬</span>
-                            <span class="font-bold">תוכנית הלימודים באופטיקה יישומית - קולנוע</span>
+                            <span class="font-bold">תוכנית הלימודים באופטיקה יישומית קולנוע מקצוע מוביל 2110</span>
+                        </a>
+
+                        <!-- שורה שנייה -->
+                        <a href="https://hakolbakaf.co.il/kolnoa/index.html" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
+                            <span class="text-3xl sub-relief">🎬</span>
+                            <span class="font-bold">שיעורים בהפקות י' עד י"ב</span>
                         </a>
                         <a href="https://itaibental.github.io/cinema-mazagot/" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
                             <span class="text-3xl sub-relief">📽️</span>
                             <span class="font-bold">מצגות ומערכי שיעור לפי נושאים</span>
                         </a>
-                        <a href="https://hakolbakaf.co.il/kolnoa/index.html" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
-                            <span class="text-3xl sub-relief">🎬</span>
-                            <span class="font-bold">שיעורים לפי שכבות</span>
+
+                        <!-- שורה שלישית -->
+                        <a href="https://drive.google.com/drive/folders/1_BPMBzL_HhQq3FSAx840rNdpWEAhQJoi?usp=sharing" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group md:col-span-2">
+                            <span class="text-3xl sub-relief">🌍</span>
+                            <span class="font-bold">מצגות בערבית / عروض تقديمية بالלغة العربية</span>
                         </a>
                     </div>
                 </div>
@@ -390,6 +402,9 @@
                         <a href="https://meyda.education.gov.il/files/madaTech/tikshoret/Journalism2025.pdf" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
                             <span class="text-3xl sub-relief">📑</span> <span class="font-bold">מתווה פרוייקט הגמר</span>
                         </a>
+                        <a href="https://app.smore.com/n/a3hcq" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
+                            <span class="text-3xl sub-relief">🔍</span> <span class="font-bold">פירוט לפי נושאים</span>
+                        </a>
                         <a href="https://classroom.google.com/c/NjMyODY3MDg0NDYz" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group"><span class="text-3xl sub-relief">🏫</span> <span class="font-bold">קלאסרום שיתופי</span></a>
                         <a href="https://drive.google.com/drive/folders/1dPTu98hE-YYZy3fGpsMtVtUB92DUY2jf?usp=drive_link" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group"><span class="text-3xl sub-relief">📑</span> <span class="font-bold">מערכי שיעור</span></a>
                         <a href="https://drive.google.com/drive/folders/1gT3DmnTEOWxjr7OilBAAT4mtMkINm4sV?usp=drive_link" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group"><span class="text-3xl sub-relief text-orange-600 font-bold">🤖</span> <span class="font-bold text-slate-800">השתלמות AI תשפ"ד</span></a>
@@ -414,7 +429,7 @@
                     </svg>
                 </button>
                 <div id="content-podcast" class="accordion-content">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-right">
                         <a href="https://meyda.education.gov.il/files/madaTech/tikshoret/PodcastRadio2025.pdf" target="_blank" class="sub-link p-4 rounded-xl flex items-center gap-3 group">
                             <span class="text-2xl sub-relief text-orange-600 font-bold">📑</span> 
                             <span class="text-sm font-bold">מתווה פרוייקט הגמר</span>
@@ -441,14 +456,47 @@
                     <svg id="icon-photo" class="rotate-icon w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
                 <div id="content-photo" class="accordion-content">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <a href="https://meyda.education.gov.il/files/madaTech/tikshoret/Photo-OpticnewCuriculum.pdf" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group md:col-span-2">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-right">
+                        <!-- עודכן: כותרת חדשה "חומרים ופעילויות" -->
+                        <a href="https://docs.google.com/document/d/1m3uh9pvkQC8IvC1sOK2iO6NJstJtUDeXLBAAeWhbQCg/edit?usp=sharing" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
+                            <span class="text-3xl sub-relief">📸</span>
+                            <span class="font-bold">חומרים ופעילויות</span>
+                        </a>
+                        <a href="https://meyda.education.gov.il/files/madaTech/tikshoret/Photo-OpticnewCuriculum.pdf" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group">
                             <span class="text-3xl sub-relief">🔬</span>
                             <span class="font-bold">תוכנית הלימודים באופטיקה יישומית - צילום</span>
                         </a>
                     </div>
                 </div>
             </div>
+
+            <!-- Category: Colleges (GRADE 13-14) -->
+            <div id="card-colleges" class="floating-card overflow-hidden" draggable="true">
+                <button onclick="toggleAccordion('colleges')" class="w-full flex justify-between items-center p-7 hover:bg-white/10 transition-colors text-right">
+                    <div class="flex items-center gap-6">
+                        <div class="relief-icon bg-indigo-700 border border-indigo-400/50 p-3.5 rounded-2xl text-white shadow-xl">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                                <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                            </svg>
+                        </div>
+                        <span class="text-2xl font-bold text-white drop-shadow-lg text-right">מכללות י"ג י"ד</span>
+                    </div>
+                    <svg id="icon-colleges" class="rotate-icon w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div id="content-colleges" class="accordion-content">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-right">
+                        <a href="https://pop.education.gov.il/tchumey_daat/communication-technologies/high-school/pedagogy-of/colleges/" target="_blank" class="sub-link p-5 rounded-xl flex items-center gap-4 group md:col-span-2">
+                            <span class="text-3xl sub-relief">🎓</span>
+                            <span class="font-bold">מידע פדגוגי ונהלים - מכללות טכנולוגיות</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- Contact Section -->
