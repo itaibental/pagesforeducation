@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>רשימת ספרים לשנה"ל תשפ"ז</title>
-    <!-- פונט Heebo לקריאות מעולה וחדה -->
+    <!-- פונט Heebo לקריאות מעולה, חדשנית וחדה במיוחד -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -22,128 +22,130 @@
         }
     </script>
     <style>
-        /* רקע כהה עמוק ויוקרתי המונע החזרי אור ומעייף פחות את העיניים */
+        /* רקע תכלת-ים בהיר, רך ועשיר המעניק מראה קריאטיבי ויוקרתי */
         body {
-            background-color: #0a0a0c;
+            background-color: #f0f9ff; /* Sky 50 */
             background-image: 
-                radial-gradient(circle at top left, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at bottom right, rgba(244, 63, 94, 0.1) 0%, transparent 40%);
+                radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 90% 80%, rgba(56, 189, 248, 0.12) 0%, transparent 45%);
             min-height: 100vh;
         }
-        /* אפקט מעבר חד ויוקרתי לכרטיסיות הקונטרסטיות */
+        /* מעבר מודרני לכרטיסיות הזכוכיתיות */
         .contrast-card {
-            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        /* אפקטי זוהר (Neon Glow) ייחודיים לכל כרטיסייה במעבר עכבר */
+        /* אפקט ריחוף, זוהר מותאם והבלטה של כרטיסיות מול רקע התכלת */
         .glow-emerald:hover {
-            border-color: #10b981;
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
-            transform: scale(1.02);
+            border-color: #059669;
+            box-shadow: 0 20px 30px -10px rgba(5, 150, 105, 0.2);
+            transform: translateY(-6px);
         }
-        .glow-cyan:hover {
-            border-color: #06b6d4;
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
-            transform: scale(1.02);
+        .glow-blue:hover {
+            border-color: #025a8a;
+            box-shadow: 0 20px 30px -10px rgba(2, 90, 138, 0.2);
+            transform: translateY(-6px);
         }
         .glow-violet:hover {
-            border-color: #8b5cf6;
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
-            transform: scale(1.02);
+            border-color: #6d28d9;
+            box-shadow: 0 20px 30px -10px rgba(109, 40, 217, 0.2);
+            transform: translateY(-6px);
         }
         .glow-rose:hover {
-            border-color: #f43f5e;
-            box-shadow: 0 0 20px rgba(244, 63, 94, 0.3);
-            transform: scale(1.02);
+            border-color: #be123c;
+            box-shadow: 0 20px 30px -10px rgba(190, 18, 60, 0.2);
+            transform: translateY(-6px);
         }
     </style>
 </head>
-<body class="flex flex-col justify-between p-6 md:p-12 font-sans text-neutral-100">
+<body class="flex flex-col justify-between p-6 md:p-12 font-sans text-slate-800">
 
-    <!-- תוכן ראשי מקונטרס -->
-    <main class="max-w-5xl mx-auto w-full my-auto flex flex-col items-center">
+    <main class="max-w-6xl mx-auto w-full my-auto flex flex-col items-center">
         
-        <!-- כותרת עליונה בעיצוב קונטרסטי מודרני -->
+        <!-- כותרת עליונה מעוצבת בצורה מודרנית ונקייה -->
         <header class="text-center mb-12 md:mb-16">
-            <div class="inline-flex items-center justify-center p-3.5 bg-neutral-900 border border-neutral-800 rounded-2xl mb-5 text-indigo-400 shadow-xl">
-                <!-- אייקון ספר מעוצב בצורה חדה -->
+            <div class="inline-flex items-center justify-center p-3.5 bg-white border border-sky-100 rounded-2xl mb-5 text-sky-600 shadow-md">
+                <!-- אייקון ספר מעוצב בצורה חדה ויוקרתית -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
             </div>
-            <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight mb-4">
-                רשימת ספרים <span class="bg-gradient-to-l from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">תשפ"ז</span>
+            <h1 class="text-4xl md:text-6xl font-black text-slate-900 tracking-tight mb-4">
+                רשימת ספרים <span class="bg-gradient-to-l from-sky-600 via-indigo-600 to-indigo-800 bg-clip-text text-transparent">לשנה"ל תשפ"ז</span>
             </h1>
-            <p class="text-neutral-400 text-base md:text-lg font-normal max-w-sm mx-auto">
-                לצפייה ברשימה המעודכנת, בחרו את שכבת הלימוד שלכם:
+            <p class="text-slate-600 text-base md:text-lg font-medium max-w-sm mx-auto">
+                לצפייה ברשימה המעודכנת, לחצו על שכבת הלימוד שלכם:
             </p>
         </header>
 
-        <!-- גריד כפתורי שכבות קונטרסטיים -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full px-2">
 
-            <!-- שכבה ט' - ירוק ניאון -->
+            <!-- שכבה ט' - ירוק ברקת חזק וקונטרסטי -->
             <a href="https://docs.google.com/spreadsheets/d/1p2BPyLkiAiEFy5ZVMQp4nM0H0nEAMCUutqmPx1OdTsc/edit?usp=sharing" 
                target="_blank" 
-               class="contrast-card glow-emerald bg-neutral-900/90 border-2 border-neutral-800 rounded-2xl p-6 text-center shadow-2xl block">
-                <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-emerald-500/10 text-emerald-400 mb-5 font-bold text-3xl border border-emerald-500/20">
+               class="contrast-card glow-emerald bg-white border-2 border-slate-200/80 rounded-3xl p-6 text-center shadow-md block relative overflow-hidden group">
+                <div class="absolute inset-x-0 top-0 h-1.5 bg-emerald-500"></div>
+                <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 mb-5 font-bold text-3xl border border-emerald-100">
                     ט'
                 </div>
-                <h2 class="text-xl font-bold text-white mb-1">שכבה ט'</h2>
-                <p class="text-neutral-500 text-xs mb-6">קובץ רשימת הספרים</p>
-                <div class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-emerald-500 text-neutral-950 font-bold text-sm hover:bg-emerald-400 transition-colors w-full">
+                <h2 class="text-xl font-bold text-slate-950 mb-1">שכבה ט'</h2>
+                <p class="text-slate-500 text-xs mb-6">קובץ רשימת הספרים</p>
+                <div class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-emerald-600 text-white font-bold text-sm group-hover:bg-emerald-700 transition-colors shadow-md w-full">
                     <span>פתיחת מסמך</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
                 </div>
             </a>
 
-            <!-- שכבה י' - כחול/תכלת ניאון -->
+            <!-- שכבה י' - כחול רויאל עמוק וקונטרסטי -->
             <a href="https://docs.google.com/spreadsheets/d/1nIYLv-nwVorB2hN7JrZA9u4vrVjkx4DJ8F0O14nvwpc/edit?usp=sharing" 
                target="_blank" 
-               class="contrast-card glow-cyan bg-neutral-900/90 border-2 border-neutral-800 rounded-2xl p-6 text-center shadow-2xl block">
-                <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-cyan-500/10 text-cyan-400 mb-5 font-bold text-3xl border border-cyan-500/20">
+               class="contrast-card glow-blue bg-white border-2 border-slate-200/80 rounded-3xl p-6 text-center shadow-md block relative overflow-hidden group">
+                <div class="absolute inset-x-0 top-0 h-1.5 bg-sky-600"></div>
+                <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-sky-50 text-sky-700 mb-5 font-bold text-3xl border border-sky-100">
                     י'
                 </div>
-                <h2 class="text-xl font-bold text-white mb-1">שכבה י'</h2>
-                <p class="text-neutral-500 text-xs mb-6">קובץ רשימת הספרים</p>
-                <div class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-cyan-500 text-neutral-950 font-bold text-sm hover:bg-cyan-400 transition-colors w-full">
+                <h2 class="text-xl font-bold text-slate-950 mb-1">שכבה י'</h2>
+                <p class="text-slate-500 text-xs mb-6">קובץ רשימת הספרים</p>
+                <div class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-sky-600 text-white font-bold text-sm group-hover:bg-sky-700 transition-colors shadow-md w-full">
                     <span>פתיחת מסמך</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
                 </div>
             </a>
 
-            <!-- שכבה י"א - סגול ניאון -->
+            <!-- שכבה י"א - סגול חציל קלאסי וקונטרסטי -->
             <a href="https://docs.google.com/spreadsheets/d/1aCFHt61SVz-oQb7ze9x_4QVnOELiiIO5Uu4UHvT5pa8/edit?usp=sharing" 
                target="_blank" 
-               class="contrast-card glow-violet bg-neutral-900/90 border-2 border-neutral-800 rounded-2xl p-6 text-center shadow-2xl block">
-                <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-violet-500/10 text-violet-400 mb-5 font-bold text-2xl border border-violet-500/20">
+               class="contrast-card glow-violet bg-white border-2 border-slate-200/80 rounded-3xl p-6 text-center shadow-md block relative overflow-hidden group">
+                <div class="absolute inset-x-0 top-0 h-1.5 bg-violet-600"></div>
+                <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-violet-50 text-violet-700 mb-5 font-bold text-2xl border border-violet-100">
                     י"א
                 </div>
-                <h2 class="text-xl font-bold text-white mb-1">שכבה י"א</h2>
-                <p class="text-neutral-500 text-xs mb-6">קובץ רשימת הספרים</p>
-                <div class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-violet-500 text-neutral-950 font-bold text-sm hover:bg-violet-400 transition-colors w-full">
+                <h2 class="text-xl font-bold text-slate-950 mb-1">שכבה י"א</h2>
+                <p class="text-slate-500 text-xs mb-6">קובץ רשימת הספרים</p>
+                <div class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-violet-600 text-white font-bold text-sm group-hover:bg-violet-700 transition-colors shadow-md w-full">
                     <span>פתיחת מסמך</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
                 </div>
             </a>
 
-            <!-- שכבה י"ב - ורוד ניאון -->
+            <!-- שכבה י"ב - רוז/דובדבן קונטרסטי וחם -->
             <a href="https://docs.google.com/spreadsheets/d/1QaV45qSJTTS7iw3X6KidBiZhxCHffZX1E3D7gVJ-ImA/edit?usp=sharing" 
                target="_blank" 
-               class="contrast-card glow-rose bg-neutral-900/90 border-2 border-neutral-800 rounded-2xl p-6 text-center shadow-2xl block">
-                <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-rose-500/10 text-rose-400 mb-5 font-bold text-2xl border border-rose-500/20">
+               class="contrast-card glow-rose bg-white border-2 border-slate-200/80 rounded-3xl p-6 text-center shadow-md block relative overflow-hidden group">
+                <div class="absolute inset-x-0 top-0 h-1.5 bg-rose-600"></div>
+                <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-rose-50 text-rose-700 mb-5 font-bold text-2xl border border-rose-100">
                     י"ב
                 </div>
-                <h2 class="text-xl font-bold text-white mb-1">שכבה י"ב</h2>
-                <p class="text-neutral-500 text-xs mb-6">קובץ רשימת הספרים</p>
-                <div class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-rose-500 text-neutral-950 font-bold text-sm hover:bg-rose-400 transition-colors w-full">
+                <h2 class="text-xl font-bold text-slate-950 mb-1">שכבה י"ב</h2>
+                <p class="text-slate-500 text-xs mb-6">קובץ רשימת הספרים</p>
+                <div class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-rose-600 text-white font-bold text-sm group-hover:bg-rose-700 transition-colors shadow-md w-full">
                     <span>פתיחת מסמך</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
                 </div>
@@ -153,8 +155,8 @@
 
     </main>
 
-    <!-- תחתית הדף (פוטר) קונטרסטי ומינימליסטי -->
-    <footer class="text-center text-xs text-neutral-600 mt-16 mb-2 tracking-wider">
+    <!-- תחתית הדף (פוטר) מינימליסטית עם קריאות מקסימלית -->
+    <footer class="text-center text-xs text-slate-500 mt-16 mb-2 tracking-wider font-semibold">
         <p>© כל הזכויות שמורות • שנה"ל תשפ"ז</p>
     </footer>
 
