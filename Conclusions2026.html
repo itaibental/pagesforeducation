@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>דגשים פדגוגיים · בגרות תשפ"ו · מגמת עיתונאות ופודקאסטים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#3a1d63;
+    --bg-deep:#28123f;
+    --panel:#4a2782;
+    --ink:#ffffff;
+    --ink-dim:rgba(255,255,255,0.72);
+    --signal:#ff4d6d;
+    --signal-dim:#d43457;
+    --tape:#39c9c2;
+    --tape-dim:#1f9992;
+    --gold:#f2c94c;
+    --card:#ffffff;
+    --card-text:#241833;
+    --line: rgba(255,255,255,0.18);
+    --line-strong: rgba(255,255,255,0.4);
+    --shadow: 0 18px 40px -18px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Open Sans',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Open Sans',sans-serif;
+  }
+
+  /* ---------- ON-AIR HERO ---------- */
+  .hero{
+    position:relative;
+    background:var(--bg-deep);
+    color:var(--ink);
+    padding:56px 24px 64px;
+    overflow:hidden;
+    border-bottom:6px solid var(--signal);
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 46px);
+    pointer-events:none;
+  }
+  .hero-inner{
+    max-width:1040px;
+    margin:0 auto;
+    position:relative;
+    z-index:2;
+  }
+  .onair{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--signal);
+    color:#241833;
+    font-weight:800;
+    font-size:13px;
+    letter-spacing:0.14em;
+    padding:8px 16px;
+    border-radius:3px;
+  }
+  .onair .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:#241833;
+    animation:blink 1.6s ease-in-out infinite;
+  }
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.25;}}
+
+  .hero h1{
+    font-size:clamp(32px, 5.6vw, 60px);
+    line-height:1.15;
+    font-weight:800;
+    margin:26px 0 10px;
+    max-width:22ch;
+  }
+  .hero .accent{color:var(--gold);}
+  .hero p.lede{
+    font-size:clamp(16px, 2vw, 20px);
+    max-width:56ch;
+    color:var(--ink-dim);
+    margin:0 0 30px;
+    font-weight:300;
+  }
+  .hero-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    font-size:13px;
+    letter-spacing:0.03em;
+    color:var(--ink-dim);
+  }
+  .hero-meta span{
+    border:1px solid rgba(255,255,255,0.28);
+    border-radius:999px;
+    padding:6px 14px;
+  }
+
+  /* waveform signature */
+  .waveform{
+    display:flex;
+    align-items:flex-end;
+    gap:3px;
+    height:46px;
+    margin-top:34px;
+    opacity:0.9;
+  }
+  .waveform span{
+    display:block;
+    width:4px;
+    background:var(--gold);
+    border-radius:2px;
+    animation:wave 1.8s ease-in-out infinite;
+  }
+  @keyframes wave{
+    0%,100%{transform:scaleY(0.35);}
+    50%{transform:scaleY(1);}
+  }
+
+  /* ---------- NAV ---------- */
+  .nav-wrap{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(58,29,99,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-strong);
+  }
+  .nav-scroll{
+    max-width:1040px;
+    margin:0 auto;
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:12px 24px;
+    scrollbar-width:none;
+  }
+  .nav-scroll::-webkit-scrollbar{display:none;}
+  .nav-pill{
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    font-weight:600;
+    padding:8px 14px;
+    border-radius:999px;
+    border:1px solid var(--line-strong);
+    color:var(--ink);
+    text-decoration:none;
+    white-space:nowrap;
+    transition:background 0.15s, color 0.15s;
+  }
+  .nav-pill b{font-weight:800;}
+  .nav-pill.active{
+    background:var(--gold);
+    color:#241833;
+    border-color:var(--gold);
+  }
+  .nav-pill:hover{background:rgba(255,255,255,0.12);}
+  .nav-pill.active:hover{background:var(--gold);}
+
+  /* ---------- MAIN ---------- */
+  main{max-width:1040px;margin:0 auto;padding:8px 24px 100px;}
+
+  .chapter{
+    position:relative;
+    padding:70px 0 30px;
+    border-bottom:1px solid var(--line);
+  }
+  .chapter:last-of-type{border-bottom:none;}
+
+  .chapter-head{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:22px;
+    align-items:start;
+    margin-bottom:28px;
+  }
+  .chapter-num{
+    font-size:clamp(52px,8vw,96px);
+    font-weight:800;
+    line-height:0.8;
+    color:transparent;
+    -webkit-text-stroke:1.5px var(--gold);
+    opacity:0.95;
+  }
+  .chapter-title-block h2{
+    font-size:clamp(22px,3vw,34px);
+    margin:0 0 8px;
+    font-weight:700;
+    line-height:1.25;
+  }
+  .chapter-title-block .kicker{
+    display:inline-block;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:0.12em;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+  .chapter-intro{
+    font-size:16px;
+    color:var(--ink-dim);
+    max-width:70ch;
+  }
+
+  /* ---------- ACCORDION SUB ---------- */
+  .sub{
+    margin:18px 0;
+    background:var(--card);
+    color:var(--card-text);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    border:1px solid rgba(0,0,0,0.06);
+  }
+
+  .sub-toggle{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:transparent;
+    border:none;
+    text-align:right;
+    cursor:pointer;
+    padding:20px 22px;
+    font-family:inherit;
+    color:inherit;
+  }
+  .sub-toggle:focus-visible{
+    outline:2px solid var(--signal-dim);
+    outline-offset:-2px;
+  }
+  .sub-num{
+    flex:0 0 auto;
+    font-weight:800;
+    font-size:14px;
+    color:var(--signal-dim);
+    border:1px solid var(--signal-dim);
+    border-radius:4px;
+    padding:2px 10px;
+  }
+  .sub-toggle h3{
+    flex:1 1 auto;
+    font-size:18px;
+    margin:0;
+    font-weight:700;
+    text-align:right;
+  }
+  .chev{
+    flex:0 0 auto;
+    width:22px;height:22px;
+    display:flex;align-items:center;justify-content:center;
+    transition:transform 0.25s ease;
+    color:var(--signal-dim);
+  }
+  .sub.open .chev{transform:rotate(180deg);}
+
+  .sub-panel{
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows 0.3s ease;
+  }
+  .sub.open .sub-panel{grid-template-rows:1fr;}
+  .sub-panel-inner{overflow:hidden;}
+  .sub-panel-content{
+    padding:0 22px 24px;
+  }
+
+  .sub-body{
+    font-size:15px;
+    color:var(--card-text);
+    margin:0 0 18px;
+  }
+  .tags{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  @media(min-width:720px){
+    .tags{grid-template-columns:1fr 1fr;}
+  }
+  .tag-block{
+    border-radius:8px;
+    padding:14px 16px;
+    font-size:14px;
+  }
+  .tag-block.ped{
+    background:rgba(31,153,146,0.1);
+    border:1px solid rgba(31,153,146,0.35);
+  }
+  .tag-block.teach{
+    background:rgba(212,52,87,0.08);
+    border:1px solid rgba(212,52,87,0.3);
+  }
+  .tag-label{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    font-weight:800;
+    font-size:11.5px;
+    letter-spacing:0.08em;
+    margin-bottom:6px;
+  }
+  .tag-block.ped .tag-label{color:var(--tape-dim);}
+  .tag-block.teach .tag-label{color:var(--signal-dim);}
+  .tag-block p{margin:0;color:var(--card-text);}
+
+  /* mini waveform divider between chapters */
+  .divider-wave{
+    display:flex;
+    justify-content:center;
+    gap:4px;
+    align-items:flex-end;
+    height:26px;
+    margin:8px 0 40px;
+    opacity:0.6;
+  }
+  .divider-wave span{
+    width:3px;
+    background:var(--gold);
+    border-radius:2px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--bg-deep);
+    color:var(--ink);
+    padding:56px 24px 40px;
+  }
+  .footer-inner{
+    max-width:1040px;
+    margin:0 auto;
+  }
+  footer h4{
+    font-size:20px;
+    margin:0 0 18px;
+    font-weight:700;
+  }
+  .footer-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:26px;
+  }
+  .footer-links a{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--ink);
+    text-decoration:none;
+    font-weight:600;
+    font-size:14px;
+    border:1px solid rgba(255,255,255,0.3);
+    border-radius:999px;
+    padding:9px 18px;
+    transition:background 0.15s;
+  }
+  .footer-links a:hover{background:rgba(255,255,255,0.1);}
+  .footer-links a.spotify{border-color:#1DB954;}
+  .footer-links a.spotify .swatch{background:#1DB954;}
+  .footer-links a.insta{border-color:var(--gold);}
+  .footer-links a.insta .swatch{background:var(--gold);}
+  .swatch{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  footer p.small{
+    font-size:12.5px;
+    color:var(--ink-dim);
+    max-width:60ch;
+    margin:0;
+  }
+
+  a:focus-visible, .nav-pill:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="onair"><span class="dot"></span> ON AIR · תשפ"ו</span>
+    <h1>דגשים פדגוגיים <span class="accent">מתוך מסקנות בחינות הבגרות</span></h1>
+    <p class="lede">מצפן פדגוגי ומעשי לצוותי ההוראה במגמת עיתונאות ופודקאסטים — לפיתוח זהות עיתונאית עצמאית, הבנה תהליכית, חשיבה ביקורתית ויכולת הבעת עמדה.</p>
+    <div class="hero-meta">
+      <span>6 פרקים</span>
+      <span>18 סעיפים</span>
+      <span>שיחה עם הבוחן/ת · 40%</span>
+      <span>י"א–י"ב</span>
+    </div>
+    <div class="waveform" aria-hidden="true" id="heroWave"></div>
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <nav class="nav-scroll" id="navScroll"></nav>
+</div>
+
+<main id="main"></main>
+
+<footer>
+  <div class="footer-inner">
+    <h4>ערוצי ההפקה</h4>
+    <div class="footer-links">
+      <a class="spotify" href="https://open.spotify.com/show/4rqexxhccjymipdwRRdCgM?si=fc952eac4df24818" target="_blank" rel="noopener"><span class="swatch"></span> האזנה בספוטיפיי</a>
+      <a class="insta" href="https://www.instagram.com/lifeondeath_il?igsh=YjB4eWV5enh2aW1w&utm_source=qr" target="_blank" rel="noopener"><span class="swatch"></span> עמוד האינסטגרם</a>
+    </div>
+    <p class="small">מסמך זה מרכז את הדגשים הפדגוגיים למורי המגמה לקראת בחינות הבגרות תשפ"ו, ומיועד לשמש בסיס לתכנון, הנחיה והערכה של פרויקט הפודקאסט.</p>
+  </div>
+</footer>
+
+<script>
+const DATA = [
+  {
+    num:"1",
+    kicker:"זווית עיתונאית · תחקיר · עמדת התלמיד",
+    title:"זווית עיתונאית, תחקיר ועמדת התלמיד",
+    intro:"הפודקאסט אינו תרגיל טכני בקריינות, אלא אמצעי ביטוי שנועד לשקף את תפיסת העולם של התלמיד/ה ואת ממצאי התחקיר שלו/ה — בקול ברור, בזווית מגובשת, ובנושא שעומד במבחן הזמן.",
+    subs:[
+      {
+        num:"1.1",
+        title:"תפיסת עולם והקשר חברתי",
+        body:"התלמידים בוחרים נושאים ומפתחים אותם בראייה עיתונאית עם הקשרים חברתיים רחבים, כך שהפרויקט ישקף את תפיסת העולם האישית שלהם ביחס לנושא.",
+        ped:"הלמידה מבוססת על חיבור הדוק בין הנושא הנבחר לבין הקשרים חברתיים, תרבותיים ואזרחיים רחבים — כך מתפתחת חשיבה אקטיבית וזווית ראייה עיתונאית מגובשת.",
+        teach:"המורה מסייע לתלמידים לחלץ את ה\"למה זה חשוב?\" ואת הזווית האישית שלהם, ומוודא שהנושא מחובר לסוגיה רחבה ולא נשאר ברמה האנקדוטלית."
+      },
+      {
+        num:"1.2",
+        title:"הובלה קולית (40–50% מזמן הפרק)",
+        body:"התלמידים נדרשים להוביל ולהישמע בקולם לפחות 50 אחוז מזמן הפרק, מתוך שאיפה לקיים דיאלוג אמיתי — לא רק לשאול שאלות ולהמתין לתשובות.",
+        ped:"התלמידים הם בעלי הבית העיתונאיים והתוכניים של הפרק ולא מראיינים סבילים. הנוכחות הקולית הנרחבת נועדה למנוע מודל שטחי של \"שאלה והמתנה\", ולהשמיע את עמדתם וממצאיהם באופן מובהק לאורך כל הפרק.",
+        teach:"המורה מנחה שלא להסתפק בפורמט פאסיבי, ומתרגל עם התלמידים הוספת מונולוגים, הבעת דעה, פרשנות בין קטעים, קטעי מעבר וסיכומים."
+      },
+      {
+        num:"1.3",
+        title:"שילוב יצירתי של התחקיר בשידור",
+        body:"התחקיר המעמיק אינו נשאר על הנייר — התלמידים מוצאים דרך יצירתית לשקף את עיקריו בכל שלב בהקלטה: מהפתיח, דרך השאלות, ועד הסיכום והסגיר.",
+        ped:"תחקיר מעמיק אינו משימה בירוקרטית לצורך ציון, אלא בסיס הידע הליבתי של המוצר. נדרש לתרגם את נתוני התחקיר לרכיבי סאונד ולשקף אותם באופן שוטף לאורך הפרק כולו.",
+        teach:"המורה מלמד לשלב את נתוני התחקיר בפתיח, כהקדמה מעשירה לשאלות, בקטעי הקריינות שמחברים בין הראיונות, ובסגיר הפרק."
+      },
+      {
+        num:"1.4",
+        title:"תיעוד התחקיר בתיק ההפקה",
+        body:"התחקיר בתיק ההפקה יהיה מצומצם בסעיפים ונקודות: לצד כל פרט מידע, התלמידים כותבים כיצד ובאיזה חלק בהקלטה הוא ישוקף (בפתיח, כהקדמה לשאלה, כקטע מעבר וכו').",
+        ped:"נבנית הלימה ישירה ומודעת בין שלב התכנון המקדים לבין התוצר המוקלט — כל פרט מידע מחייב החלטה הפקתית מוגדרת מראש.",
+        teach:"המורה דורש מכל תלמיד לרשום לצד כל נקודת מידע את החלטת ההפקה: איפה וכיצד המידע יבוא לידי ביטוי בהקלטה."
+      },
+      {
+        num:"1.5",
+        title:"על-זמניות ורלוונטיות ארוכת טווח",
+        body:"הפרויקט צריך לעמוד במבחן הזמן ולא לעסוק בנושאים שיאבדו רלוונטיות תוך שבוע (כמו תוצאת משחק כדורגל או אירוע חד-פעמי).",
+        ped:"הלמידה מכוונת את התלמיד להבחין בין תוכן אקטואלי חולף לבין דיון בתופעות חברתיות, תרבותיות או ערכיות שנשארות רלוונטיות למאזינים לאורך זמן.",
+        teach:"המורה מכוון להשתמש באירוע נקודתי רק כמקרה בוחן המוביל לדיון מעמיק בתופעה חברתית או תרבותית רחבה ומתמשכת."
+      }
+    ]
+  },
+  {
+    num:"2",
+    kicker:"שינוי מתשפ\"ז",
+    title:"שיווק, דיגיטל, נראות וניהול ערוצים",
+    intro:"מעבר מהפצה ברשתות חברתיות בלבד לחשיבה שיווקית שלמה: פרסום ממוקד קהל יעד, הוכחת חשיפה, ומיתוג מקצועי של עמוד הספוטיפיי — תחת בעלות ופיקוח פדגוגי של המורה.",
+    subs:[
+      {
+        num:"2.1",
+        title:"תפיסת הפרסום והנעה להאזנה",
+        body:"התלמידים בוחרים פלטפורמה מתאימה (אינסטגרם, טיקטוק, קבוצות וואטסאפ ואחרות) שמטרתה להניע מאזינים מזדמנים אל עמוד הספוטיפיי המרכזי — לא ליצור \"משפיעני רשת\".",
+        ped:"השינוי נועד להקנות הבנה של תהליך עבודה נכון בסביבה דיגיטלית: לצד עריכה נכונה בספוטיפיי, על הפודקאסט להיות מופץ, מקודם ומשווק לקהל היעד שלו.",
+        teach:"המורה דורש ניסוח מדויק של התיאור (Bio) בערוצי ההפצה, כך שיכלול קישור ישיר ובולט לעמוד הספוטיפיי."
+      },
+      {
+        num:"2.2",
+        title:"חובת תיעוד הפרסום והוכחת חשיפה",
+        body:"נדרשת פעולת פרסום וקידום אחת לכל פרק, עם תיעוד בתיק ההפקה והוכחה שקהל היעד נחשף לתוכן.",
+        ped:"חוויית ההפקה מושלמת רק כאשר התוכן מגיע לציבור המיועד לו — כך נלמדת אחריות דיגיטלית ומדידת אפקטיביות.",
+        teach:"המורה דורש תיעוד בתיק ההפקה (צילומי מסך, קישורים, עמוד הפרופיל) והצגת הוכחה לחשיפה בפועל."
+      },
+      {
+        num:"2.3",
+        title:"נראות ומיתוג בפלטפורמת ספוטיפיי",
+        body:"כל פרק כולל תמונה נפרדת, כותרת שיווקית מסקרנת, תיאור מקיף לפרק (Show Notes), ותיאור כללי לערוץ.",
+        ped:"מעטפת דיגיטלית מקצועית היא חלק מכישורי התקשורת החזותית והמילולית של התלמיד — נראות ומיתוג משפיעים ישירות על החלטת ההאזנה.",
+        teach:"המורה בודק תיאור ערוץ תמציתי, תמונה ייחודית לכל פרק, כותרות לא-בנליות, ותיאור פרק מלא עם קרדיטים."
+      },
+      {
+        num:"2.4",
+        title:"בעלות, נגישות פומבית והשגחה פדגוגית",
+        body:"עמודי הספוטיפיי והרשתות החברתיות בבעלות המורה (לא התלמיד), ופתוחים לציבור — כדי לאפשר פיקוח ובחינה חיצונית.",
+        ped:"בעלות המורה מבטיחה פיקוח על זכויות יוצרים, לשון הרע ופרטיות בטרם הפרסום, ובמקביל מאפשרת לבוחן/ת חשיפה בלתי אמצעית לתהליך הקידום.",
+        teach:"המורה מנהל את החשבונות בבעלותו, מוודא שהם פומביים (לא פרטיים), ומבצע הגהה ואישור פדגוגי בטרם פרסום."
+      }
+    ]
+  },
+  {
+    num:"3",
+    kicker:"סטודיו · ציוד · עריכה",
+    title:"עצמאות טכנית, סביבת הקלטה ועריכה",
+    intro:"התלמיד מפעיל ועורך בעצמו — לא המורה. הפרק נבנה משכבות סאונד מתוכננות, ולא כשידור-רצוף אחד, בסביבת הקלטה מקצועית שהמוסד מספק.",
+    subs:[
+      {
+        num:"3.1",
+        title:"עצמאות מלאה של התלמיד",
+        body:"התלמידים מפעילים בעצמם את ההקלטה ומבצעים בעצמם את העריכה. תשובות כמו \"המורה ערך/הקליט לי\" אינן מתקבלות.",
+        ped:"פיתוח מסוגלות עצמית ושליטה מלאה בכלים — כך שהתלמיד יודע להסביר ולנמק כל שיקול טכני בעבודתו.",
+        teach:"המורה משמש מנחה בלבד, אינו מקליט או עורך במקום התלמיד, ומבהיר כי תשובות פסיביות בבחינה יביאו להורדה בניקוד."
+      },
+      {
+        num:"3.2",
+        title:"אחריות המוסד על סביבת ההקלטה",
+        body:"על המגמה לספק חדר הקלטה ייעודי, אולפן או חלל שקט ומבודד ללא הד והחזרים — כדרישת סף בסיסית.",
+        ped:"מתן תנאים שווים ומקצועיים מאפשר לכל תלמיד להגיע לתוצר סאונד איכותי — איכות השמע היא חלק מדרישות הבסיס הפדגוגיות.",
+        teach:"צוות המגמה מעמיד לרשות התלמידים חדר הקלטה ייעודי או אולפן מבודד קוליות."
+      },
+      {
+        num:"3.3",
+        title:"הקלטה פנים אל פנים / ראיון שטח (5 יח\"ל)",
+        body:"ברמת 5 יחידות חובה להקליט ראיון פנים אל פנים או ראיון שטח נייד — אין לאשר פרויקט המבוסס כולו על שיחות טלפון.",
+        ped:"פיתוח כישורי ראיון אנושיים ותקשורתיים אמיתיים, לצד תפעול הנדסי של ציוד נייד בתנאים משתנים.",
+        teach:"המורה מחייב ראיונות פנים אל פנים או יציאה לשטח, ואינו מאשר פרויקט המתבסס כולו על שיחות טלפון."
+      },
+      {
+        num:"3.4",
+        title:"עריכה בשלבים (Multiple-track)",
+        body:"הפרק מורכב מחלקים נפרדים שמוקלטים ומחוברים לתוצר אחיד — לא הסתפקות ב-Live to Tape.",
+        ped:"הבנת שפת העריכה והרכבת נרטיב קולי מלמדת לתכנן, לתקן ולשלב מקטעי סאונד באופן מקצבי ומדורג.",
+        teach:"המורה מדריך עריכה מרובת ערוצים המשלבת מונולוגים, ראיונות, מעברים, אפקטים ומוזיקה, ואינו מסתפק ברצף מוקלט אחד."
+      }
+    ]
+  },
+  {
+    num:"4",
+    kicker:"כלי עבודה, לא תחליף",
+    title:"בינה מלאכותית וזכויות יוצרים",
+    intro:"AI מותר כעזר לסיעור מוחות וארגון — אך לעולם לא כתחליף לבחירה היצירתית והעיתונאית. כל בחירה, כולל שימוש ב-AI, טעונה נימוק. תוכן מוגן בזכויות יוצרים אסור בהחלט.",
+    subs:[
+      {
+        num:"4.1",
+        title:"שימוש מושכל ואיסור עיוורון טכנולוגי",
+        body:"התלמידים נדרשים להסביר את בחירותיהם בכל שלב, גם אם נעזרו בכלי AI. תשובות כמו \"הבינה נתנה לי\" אינן מתקבלות.",
+        ped:"הטמעת טכנולוגיה מתקדמת מבלי לוותר על חשיבה ביקורתית ואנושית — התלמיד חייב להיות מסוגל לנמק כל בחירה.",
+        teach:"המורה מבהיר ש-AI מותר לסיעור מוחות אך אינו פוטר מהבנה מלאה, ודורש נימוק לכל תוצר."
+      },
+      {
+        num:"4.2",
+        title:"זכויות יוצרים ושימוש זהיר ב-AI ויזואלי/מוזיקלי",
+        body:"איסור מוחלט על תוכן מוגן בזכויות יוצרים, ולצד זאת הימנעות משימוש פזיז ב-AI ליצירת מוזיקה/תמונות שאינן מתאימות לאופי הפרויקט.",
+        ped:"חינוך לנורמות אתיות ומשפטיות, לצד פיתוח טעם אמנותי מנומק — התלמיד מסביר את הקונספט והשיקולים מאחורי כל אלמנט שנוצר ב-AI.",
+        teach:"המורה אוסר תוכן מוגן לחלוטין, ומנחה שימוש מושכל ומוסבר בכלי AI ליצירת מוזיקה ותמונות."
+      }
+    ]
+  },
+  {
+    num:"5",
+    kicker:"סדרה, לא אוסף פרקים",
+    title:"מבנה הפרויקט, רצף הפרקים והפרויקטון",
+    intro:"פחות פרקים, יותר עומק. הסדרה מתוכננת כארכיטקטורת תוכן שלמה, וממשיכה תהליך שהחל כבר בפרויקטון של י\"א.",
+    subs:[
+      {
+        num:"5.1",
+        title:"התמקדות באיכות על פני כמות",
+        body:"מספר הפרקים צומצם כדי לאפשר השקעה גדולה יותר בכל פרק — חובה לעמוד בכמות הפרקים כפי שמוגדרת במתווה.",
+        ped:"העדפת עומק ומורכבות על פני הספק טכני יבש, כדי ליצור תוצר מושקע ומבוסס תחקיר.",
+        teach:"המורה מקפיד על כמות הפרקים המוגדרת, ומנתב משאבים להשקעה בתחקיר, עריכה וגימור."
+      },
+      {
+        num:"5.2",
+        title:"חשיבה על סדרה ותכנון רצף הפרקים",
+        body:"תכנון מראש: איזה פרק פותח, איזה פרק הוא השיא, ואיזה פרק חותם את הסדרה.",
+        ped:"התלמידים לומדים לראות פרויקט מתפתח כסדרה שלמה, ומפתחים חשיבה מבנית לגבי סדר נכון של הפרקים.",
+        teach:"המורה מכוון לתכנון סדר הפרקים: פתיחה, שיא וקונפליקט, וסגירה עם מבט לעתיד."
+      },
+      {
+        num:"5.3",
+        title:"רצף פדגוגי בין י\"א ל-י\"ב",
+        body:"הפרויקט אינו נולד ברגע האחרון בי\"ב — הפרויקטון בי\"א מבסס יסודות, ניסוי כלים ופרק פיילוט שמוזנים להמשך.",
+        ped:"הפרויקט מובן כתהליך הפקתי רציף ומתפתח לאורך שנתיים; מרכיב ההמשכיות מחייב הסבר מה נעשה בי\"א ואילו לקחים נלקחו לי\"ב.",
+        teach:"המורה מנחה לתעד בתיק ההפקה את שלב הפרויקטון (ניסוי כלים, תחקיר ראשוני, פיילוט) ואת השדרוג שבוצע בי\"ב לאור הלקחים."
+      }
+    ]
+  },
+  {
+    num:"6",
+    kicker:"40% מהציון",
+    title:"הערכה, רפלקציה ותיק ההפקה",
+    intro:"השיחה עם הבוחן/ת עולה במעמדה, הרפלקציה נדרשת להיות דיאלקטית ומנומקת, ותיק ההפקה — מצומצם ומדויק יותר — הוא חלק בלתי נפרד מהתוצר הנבחן.",
+    subs:[
+      {
+        num:"6.1",
+        title:"הכנה לשיחה עם הבוחן/ת (40% מהציון)",
+        body:"החל מתשפ\"ו, השיחה עם הבוחן ברמת 5 יח\"ל מהווה 40 נקודות מהציון — התלמידים חייבים לדעת לנמק את בחירותיהם הרעיוניות והאמנותיות.",
+        ped:"מעמד מרכזי ליכולת הנימוק, השפה הרדיופונית והאוריינות התקשורתית — השיחה היא דיאלוג ולא בדיקה יבשה של התוצר.",
+        teach:"המורה מקיים סימולציות והכנה מקיפה, ומכין את התלמידים להסביר שיקולים עיתונאיים, טכניים והפקתיים."
+      },
+      {
+        num:"6.2",
+        title:"פרק רפלקציה מובנה ומלמד",
+        body:"התלמידים דנים בקשיים שהתמודדו איתם ומסבירים את הפתרונות שבחרו — לא שיחה ספונטנית שאינה מלמדת דבר.",
+        ped:"הרפלקציה היא כלי למידה דיאלקטי: הצגת קשיים אמיתיים (תוכן, טכנולוגיה, ניהול הפקה) והסבר הנימוקים לפתרונות שנבחרו.",
+        teach:"המורה מדריך לכתיבת פרק רפלקציה מובנה המבוסס על קשיים, ניתוח פתרונות ולקחים הפקתיים."
+      },
+      {
+        num:"6.3",
+        title:"תיק ההפקה המעודכן",
+        body:"תיק ההפקה צומצם, סודר מחדש והוסרו ממנו כפילויות — משקלו קריטי להצלחה בבגרות, והתלמידים ייבחנו על סמך המידע שבו.",
+        ped:"תיק ההפקה משקף את יכולת התכנון, התיעוד והניתוח של התלמיד, והוא חלק בלתי נפרד מהפרויקט הנבחן.",
+        teach:"המורה מוודא מילוי מדויק וקפדני של תיק ההפקה לכל אורך הדרך, ומבהיר שהוא נבחן ישירות."
+      }
+    ]
+  }
+];
+
+function bars(n){
+  let out = '';
+  for(let i=0;i<n;i++){
+    const h = 20 + Math.round(Math.sin(i*1.3)*40+40);
+    const dur = (1 + (i % 5) * 0.15).toFixed(2);
+    out += `<span style="height:${h}%; animation-delay:${(i*0.07).toFixed(2)}s; animation-duration:${dur}s;"></span>`;
+  }
+  return out;
+}
+
+document.getElementById('heroWave').innerHTML = bars(40);
+
+const nav = document.getElementById('navScroll');
+const main = document.getElementById('main');
+let uid = 0;
+
+DATA.forEach((ch, idx) => {
+  // nav pill
+  const pill = document.createElement('a');
+  pill.href = `#ch-${ch.num}`;
+  pill.className = 'nav-pill';
+  pill.innerHTML = `<b>${ch.num}</b> ${ch.title.split(' ').slice(0,3).join(' ')}`;
+  nav.appendChild(pill);
+
+  // chapter section
+  const section = document.createElement('section');
+  section.className = 'chapter';
+  section.id = `ch-${ch.num}`;
+
+  let subsHtml = '';
+  ch.subs.forEach(s => {
+    const panelId = `panel-${uid++}`;
+    subsHtml += `
+      <div class="sub">
+        <button class="sub-toggle" aria-expanded="false" aria-controls="${panelId}">
+          <span class="sub-num">${s.num}</span>
+          <h3>${s.title}</h3>
+          <span class="chev" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="sub-panel" id="${panelId}">
+          <div class="sub-panel-inner">
+            <div class="sub-panel-content">
+              <p class="sub-body">${s.body}</p>
+              <div class="tags">
+                <div class="tag-block ped">
+                  <div class="tag-label">◆ המשמעות הפדגוגית</div>
+                  <p>${s.ped}</p>
+                </div>
+                <div class="tag-block teach">
+                  <div class="tag-label">◆ תפקיד המורה</div>
+                  <p>${s.teach}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`;
+  });
+
+  section.innerHTML = `
+    <div class="chapter-head">
+      <div class="chapter-num">${ch.num}</div>
+      <div class="chapter-title-block">
+        <span class="kicker">${ch.kicker}</span>
+        <h2>${ch.title}</h2>
+        <p class="chapter-intro">${ch.intro}</p>
+      </div>
+    </div>
+    ${subsHtml}
+    ${idx < DATA.length-1 ? `<div class="divider-wave" aria-hidden="true">${bars(24)}</div>` : ''}
+  `;
+  main.appendChild(section);
+});
+
+// accordion toggle
+main.addEventListener('click', (e) => {
+  const btn = e.target.closest('.sub-toggle');
+  if(!btn) return;
+  const subEl = btn.closest('.sub');
+  const isOpen = subEl.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+
+// scrollspy
+const pills = Array.from(document.querySelectorAll('.nav-pill'));
+const sections = Array.from(document.querySelectorAll('.chapter'));
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id = entry.target.id;
+      pills.forEach(p=>p.classList.toggle('active', p.getAttribute('href') === `#${id}`));
+    }
+  });
+}, {rootMargin:'-40% 0px -50% 0px', threshold:0});
+sections.forEach(s=>observer.observe(s));
+if(pills[0]) pills[0].classList.add('active');
+</script>
+</body>
+</html>
