@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>חדר בריחה בחירות 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'il-blue': '#0038b8',
+                        'il-navy': '#041029',
+                        'il-sky': '#0284c7',
+                        'gold-accent': '#d97706'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --il-blue: #0038b8;
+            --il-navy: #041029;
+            --il-sky: #0284c7;
+            --gold-accent: #d97706;
+        }
+
+        /* Explicit contrast fallbacks for feedback & action buttons */
+        .bg-il-blue {
+            background-color: #0038b8 !important;
+            color: #ffffff !important;
+        }
+        .text-il-blue {
+            color: #0038b8 !important;
+        }
+        .border-il-blue {
+            border-color: #0038b8 !important;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #020617;
+            color: #0f172a;
+            user-select: none;
+            overflow: hidden;
+            height: 100dvh;
+            max-height: 100dvh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            perspective: 1200px;
+        }
+
+        /* Ambient 3D Polling Hall Background */
+        .ambient-hall {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(circle at 50% 25%, #082054 0%, #030818 70%, #01040d 100%);
+        }
+
+        .isometric-ballot-svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.28;
+            filter: drop-shadow(0 20px 50px rgba(0, 56, 184, 0.45));
+            transform: scale(1.05);
+            transition: transform 0.2s ease-out;
+        }
+
+        /* 3D Glassmorphic Floating Console */
+        .console-chassis {
+            width: 100%;
+            max-width: 440px;
+            height: 100dvh;
+            max-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 10;
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 
+                0 30px 60px -15px rgba(0, 0, 0, 0.9),
+                0 0 35px rgba(0, 56, 184, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: transform 0.15s ease-out;
+            transform-style: preserve-3d;
+        }
+
+        @media (min-width: 641px) {
+            .console-chassis {
+                height: 94dvh;
+                max-height: 870px;
+                border-radius: 2rem;
+                border: 2px solid rgba(255, 255, 255, 0.18);
+            }
+        }
+
+        /* Floating Inner Content Card */
+        .stage-card {
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 1.25rem;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 
+                0 16px 36px -8px rgba(0, 15, 60, 0.3),
+                0 4px 12px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+            height: 100%;
+            max-height: 100%;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            transform: translateZ(10px);
+        }
+
+        /* Range Slider Styling */
+        input[type="range"] {
+            accent-color: var(--il-blue);
+            height: 7px;
+            border-radius: 9999px;
+            touch-action: manipulation;
+        }
+
+        /* 3D Screen Transitions */
+        .screen-fade-3d {
+            animation: card3DIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes card3DIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(0.97) rotateX(4deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0deg);
+            }
+        }
+
+        /* Animated Pulsing for Countdown */
+        @keyframes pulseCount {
+            0% { transform: scale(0.6); opacity: 0; }
+            50% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .countdown-num-anim {
+            animation: pulseCount 0.75s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Isometric 3D Polling Hall Background (Pure Vector) -->
+    <div class="ambient-hall" aria-hidden="true">
+        <svg class="isometric-ballot-svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#071b40"/>
+                    <stop offset="100%" stop-color="#020612"/>
+                </linearGradient>
+                <linearGradient id="boxTop" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2563eb"/>
+                    <stop offset="100%" stop-color="#1d4ed8"/>
+                </linearGradient>
+                <linearGradient id="boxFront" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#1e40af"/>
+                    <stop offset="100%" stop-color="#0f172a"/>
+                </linearGradient>
+                <linearGradient id="boxSide" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#172554"/>
+                    <stop offset="100%" stop-color="#09132c"/>
+                </linearGradient>
+                <linearGradient id="envelopeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="100%" stop-color="#cbd5e1"/>
+                </linearGradient>
+            </defs>
+
+            <!-- Hall Perspective Grid Lines -->
+            <g stroke="rgba(255,255,255,0.06)" stroke-width="1.5">
+                <line x1="100" y1="900" x2="500" y2="400"/>
+                <line x1="250" y1="950" x2="500" y2="400"/>
+                <line x1="500" y1="1000" x2="500" y2="400"/>
+                <line x1="750" y1="950" x2="500" y2="400"/>
+                <line x1="900" y1="900" x2="500" y2="400"/>
+                <circle cx="500" cy="400" r="320" fill="none" stroke="rgba(0,56,184,0.18)" stroke-width="2"/>
+                <circle cx="500" cy="400" r="180" fill="none" stroke="rgba(2,132,199,0.2)" stroke-width="2"/>
+            </g>
+
+            <!-- 3D Polling Booth in Background -->
+            <path d="M220 280 L380 230 L380 500 L220 560 Z" fill="#0c2356" opacity="0.65"/>
+            <path d="M380 230 L460 250 L460 480 L380 500 Z" fill="#0a1a3c" opacity="0.65"/>
+
+            <!-- 3D Isometric Ballot Box (קלפי תלת-ממדית) -->
+            <!-- Base Shadow -->
+            <ellipse cx="500" cy="680" rx="220" ry="85" fill="rgba(0,0,0,0.65)"/>
+
+            <!-- Box Left/Front Face -->
+            <polygon points="340,510 500,590 500,740 340,650" fill="url(#boxFront)"/>
+            <!-- Box Right/Side Face -->
+            <polygon points="500,590 660,510 660,650 500,740" fill="url(#boxSide)"/>
+            <!-- Box Top Face -->
+            <polygon points="500,430 660,510 500,590 340,510" fill="url(#boxTop)"/>
+
+            <!-- Slot in Ballot Box Top -->
+            <polygon points="460,500 540,500 525,520 445,520" fill="#050c1e"/>
+
+            <!-- Official State Emblem / Menorah Silhouette on Front Face -->
+            <g transform="translate(390, 600) scale(0.65)" stroke="#60a5fa" stroke-width="3" fill="none" opacity="0.7">
+                <path d="M40 70 L40 20 M20 25 C20 45, 60 45, 60 25 M5 35 C5 60, 75 60, 75 35 M25 70 L55 70"/>
+            </g>
+
+            <!-- Ballot Envelope Entering Slot (מעטפה נכנסת) -->
+            <polygon points="455,440 525,400 550,470 480,510" fill="url(#envelopeGrad)" stroke="#94a3b8" stroke-width="2"/>
+            <polygon points="455,440 480,510 505,475" fill="#e2e8f0"/>
+            <!-- Blue Stamp on Envelope -->
+            <circle cx="505" cy="445" r="7" fill="#0038b8" opacity="0.8"/>
+        </svg>
+    </div>
+
+    <!-- ==================================================== -->
+    <!-- 3D FLOATING CONSOLE (Mobile Optimized Chassis)        -->
+    <!-- ==================================================== -->
+    <div id="main-chassis" class="console-chassis">
+
+        <!-- Top HUD Header -->
+        <header class="w-full px-3.5 pt-3 pb-1.5 relative z-20 shrink-0">
+            <!-- Row 1: Brand & Top Action Buttons -->
+            <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center gap-2 min-w-0">
+                    <span class="w-2.5 h-6 bg-gradient-to-b from-sky-400 via-blue-600 to-indigo-800 rounded-full shrink-0 shadow-sm"></span>
+                    <div class="min-w-0">
+                        <div class="text-[13px] font-black tracking-tight text-white truncate leading-tight flex items-center gap-1.5">
+                            <span>בחירות 2026</span>
+                            <span class="text-[9px] bg-blue-900/70 border border-blue-400/40 text-sky-200 px-1.5 py-0.5 rounded-full font-bold">חדר בריחה</span>
+                        </div>
+                        <div id="hud-team-name" class="text-[10px] font-bold text-sky-200/80 truncate leading-tight">נא להירשם בהמשך</div>
+                    </div>
+                </div>
+
+                <!-- Quick Action Buttons -->
+                <div class="flex items-center gap-1.5 shrink-0">
+                    <button id="btn-review-info" onclick="reopenBriefingModal()" type="button" title="עיון במידע" class="bg-blue-600/35 hover:bg-blue-600/60 text-sky-100 border border-sky-400/40 font-black px-2.5 py-1.5 rounded-xl transition text-[11px] shadow-sm active:scale-95 flex items-center gap-1">
+                        <span>מידע</span>
+                    </button>
+                    <button id="btn-hint" onclick="requestHint()" type="button" title="רמז בתשלום 3 נק'" class="bg-amber-500/25 hover:bg-amber-500/40 text-amber-200 border border-amber-400/40 font-black px-2.5 py-1.5 rounded-xl transition text-[11px] shadow-sm active:scale-95">
+                        רמז (-3)
+                    </button>
+                    <button id="btn-audio-toggle" onclick="toggleAudio()" type="button" title="הפעלת / כיבוי צליל" class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 px-2 py-1.5 rounded-xl border border-slate-600/70 font-bold text-[11px] transition shadow-sm active:scale-95">
+                        <span id="audio-icon-text">צליל: פעיל</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Row 2: Live Game Stats (60s Countdown, Elapsed, Score) -->
+            <div id="hud-stats" class="hidden grid grid-cols-3 gap-1.5">
+                <!-- 60s Countdown Timer -->
+                <div id="countdown-card" class="bg-gradient-to-br from-rose-950/80 to-slate-900/90 border border-rose-500/60 rounded-xl px-2.5 py-1.5 flex items-center justify-between text-rose-200 shadow-sm transition-all duration-300">
+                    <span class="text-[9px] font-black text-rose-300">שעון שלב</span>
+                    <span id="hud-countdown" class="font-mono font-black text-base sm:text-lg text-white leading-none">60</span>
+                </div>
+
+                <!-- Total Elapsed Time -->
+                <div class="bg-slate-900/80 border border-slate-700/80 rounded-xl px-2.5 py-1.5 flex items-center justify-between text-slate-200 shadow-sm">
+                    <span class="text-[9px] font-bold text-slate-400">זמן כולל</span>
+                    <span id="hud-timer" class="font-mono font-black text-xs sm:text-sm text-white leading-none">00:00</span>
+                </div>
+
+                <!-- Score -->
+                <div class="bg-gradient-to-br from-emerald-950/80 to-slate-900/90 border border-emerald-500/60 rounded-xl px-2.5 py-1.5 flex items-center justify-between text-emerald-200 shadow-sm">
+                    <span class="text-[9px] font-bold text-emerald-300">ציון</span>
+                    <span class="font-black text-xs sm:text-sm text-white leading-none"><span id="hud-score">0</span><span class="text-[9px] text-emerald-300/70 font-normal">/100</span></span>
+                </div>
+            </div>
+
+            <!-- Row 3: Progress Bar -->
+            <div id="hud-progress-container" class="mt-1.5 hidden">
+                <div class="flex justify-between items-center text-[10px] text-slate-300 font-bold mb-1">
+                    <span id="hud-station-title" class="text-sky-300 font-black">תחנה 1 מתוך 12</span>
+                    <span id="hud-stations-left" class="text-slate-400">נותרו 12 תחנות</span>
+                </div>
+                <div class="w-full bg-slate-800/80 h-1.5 rounded-full overflow-hidden border border-slate-700">
+                    <div id="hud-progress-bar" class="bg-gradient-to-l from-sky-400 via-blue-500 to-indigo-600 h-full w-0 rounded-full transition-all duration-300 shadow-[0_0_8px_rgba(56,189,248,0.6)]"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ==================================================== -->
+        <!-- MAIN INTERACTIVE STAGE                               -->
+        <!-- ==================================================== -->
+        <main class="w-full flex-1 min-h-0 px-3 py-1.5 relative z-20 flex flex-col items-center justify-center">
+
+            <!-- SCREEN 0: Welcome & Registration -->
+            <div id="screen-welcome" class="stage-card p-4 sm:p-5 text-center screen-fade-3d">
+                <div>
+                    <div class="inline-block px-3 py-0.5 bg-blue-50 text-il-blue text-[11px] font-black rounded-full border border-blue-200 mb-1.5 shadow-sm">
+                        מערכת הבחירות לכנסת ה-26
+                    </div>
+                    <h2 class="text-lg sm:text-xl font-black text-slate-900 tracking-tight">חדר בריחה אזרחי</h2>
+                    <p class="text-slate-600 text-[11px] mt-1 font-semibold leading-relaxed">
+                        חקרו את התחנות, פצחו את הצפנים וגלו את עקרונות הדמוקרטיה הישראלית.
+                    </p>
+                </div>
+
+                <form onsubmit="handleStartGame(event)" class="space-y-3 text-right my-auto py-2">
+                    <div>
+                        <label for="input-team-name" class="block text-[11px] font-black text-slate-800 mb-1">
+                            שם הקבוצה
+                        </label>
+                        <input type="text" id="input-team-name" required placeholder="לדוגמה: קבוצת הדמוקרטיה" class="w-full px-3.5 py-2.5 rounded-xl border-2 border-slate-200 text-xs font-bold text-slate-800 focus:outline-none focus:border-il-blue shadow-sm bg-slate-50/70 transition">
+                    </div>
+
+                    <div>
+                        <label for="input-team-members" class="block text-[11px] font-black text-slate-800 mb-1">
+                            שמות חברי הצוות
+                        </label>
+                        <input type="text" id="input-team-members" required placeholder="לדוגמה: נועה, איתי ומאיה" class="w-full px-3.5 py-2.5 rounded-xl border-2 border-slate-200 text-xs font-bold text-slate-800 focus:outline-none focus:border-il-blue shadow-sm bg-slate-50/70 transition">
+                    </div>
+
+                    <div class="bg-blue-50/90 border border-blue-200/80 rounded-xl p-3 text-[10.5px] text-slate-700 leading-snug font-medium text-right shadow-inner">
+                        12 תחנות מעניקות 100 נקודות. בכל תחנה עומדות לרשותכם 60 שניות (הארכה ב-5 נקודות). אימות שגוי או רמז מורידים 3 נקודות.
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-il-blue via-blue-700 to-indigo-800 hover:from-blue-700 hover:to-indigo-900 text-white font-black py-3 rounded-xl shadow-lg transition text-xs active:scale-[0.98]">
+                        יציאה לדרך והפעלת החדר
+                    </button>
+                </form>
+
+                <div class="text-[9px] text-slate-400 font-bold pb-0.5">
+                    מדינת ישראל • פעילות אזרחית לבתי ספר
+                </div>
+            </div>
+
+            <!-- ==================================================== -->
+            <!-- 12 INTERACTIVE PUZZLE STATIONS                      -->
+            <!-- ==================================================== -->
+            <div id="stations-wrapper" class="w-full h-full hidden flex flex-col justify-center min-h-0">
+
+                <!-- STATION 1: Calendar Day 27 (9 pts) -->
+                <div id="station-1" class="station-node hidden stage-card p-3.5 text-center screen-fade-3d">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[11px] font-extrabold text-il-blue">תחנה 1 מתוך 12 (9 נק')</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full font-bold">סריקת תאריך</span>
+                    </div>
+                    <h3 class="text-sm sm:text-base font-black text-slate-900 mb-0.5">מועד יום הבחירות באוקטובר</h3>
+                    <p class="text-[10px] text-slate-600 mb-1.5 font-semibold">סמנו בלוח השנה את התאריך המדויק ולחצו על אימות פיצוח.</p>
+
+                    <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 my-auto shadow-inner">
+                        <div class="text-center font-black text-xs text-slate-800 mb-1.5">אוקטובר 2026</div>
+                        <div class="grid grid-cols-7 gap-1 text-center text-[10px] font-black mb-1">
+                            <span class="text-slate-400 py-0.5">א</span>
+                            <span class="text-slate-400 py-0.5">ב</span>
+                            <span class="text-slate-400 py-0.5">ג</span>
+                            <span class="text-slate-400 py-0.5">ד</span>
+                            <span class="text-slate-400 py-0.5">ה</span>
+                            <span class="text-slate-400 py-0.5">ו</span>
+                            <span class="text-slate-400 py-0.5">ש</span>
+                            <div id="s1-calendar-days" class="contents"></div>
+                        </div>
+                    </div>
+
+                    <div id="s1-status" class="text-center text-[10.5px] font-black text-slate-600 my-1">
+                        סמנו יום ולחצו על אימות פיצוח
+                    </div>
+
+                    <button id="s1-btn-continue" onclick="verifyStation(1)" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-2.5 rounded-xl text-xs shadow-md active:scale-95 mt-auto">
+                        בקש אימות פיצוח
+                    </button>
+                </div>
+
+                <!-- STATION 2: Age Equation (18 + 21 = 39) (9 pts) -->
+                <div id="station-2" class="station-node hidden stage-card p-3.5 text-center screen-fade-3d">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[11px] font-extrabold text-il-blue">תחנה 2 מתוך 12 (9 נק')</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full font-bold">כיול משוואה</span>
+                    </div>
+                    <h3 class="text-sm sm:text-base font-black text-slate-900 mb-0.5">הזכות לבחור ולהיבחר</h3>
+                    <p class="text-[10px] text-slate-600 mb-1.5 font-semibold">כיילו את שני הסליידרים ובדקו באמצעות אימות פיצוח.</p>
+
+                    <div class="space-y-2.5 bg-slate-50 p-3 rounded-xl border border-slate-200 my-auto text-right shadow-inner">
+                        <div>
+                            <div class="flex justify-between text-[11px] font-black text-slate-700 mb-1">
+                                <span>גיל זכות בחירה</span>
+                                <span id="s2-val-vote" class="text-il-blue font-mono font-black text-base">16</span>
+                            </div>
+                            <input type="range" id="s2-slider-vote" min="14" max="25" value="16" oninput="updateStation2()" class="w-full cursor-pointer">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-[11px] font-black text-slate-700 mb-1">
+                                <span>גיל מינימלי להתמודדות לכנסת</span>
+                                <span id="s2-val-run" class="text-il-blue font-mono font-black text-base">18</span>
+                            </div>
+                            <input type="range" id="s2-slider-run" min="18" max="30" value="18" oninput="updateStation2()" class="w-full cursor-pointer">
+                        </div>
+
+                        <div id="s2-sum-box" class="text-center p-2 rounded-xl border border-slate-200 bg-white shadow-sm">
+                            <span class="text-[10px] text-slate-500 font-bold block">סכום שני הגילאים:</span>
+                            <span id="s2-sum-val" class="text-xl font-mono font-black text-slate-800">34</span>
+                        </div>
+                    </div>
+
+                    <button id="s2-btn-continue" onclick="verifyStation(2)" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-2.5 rounded-xl text-xs shadow-md active:scale-95 mt-auto">
+                        בקש אימות פיצוח
+                    </button>
+                </div>
+
+                <!-- STATION 3: Party Lists Counter (38) (9 pts) -->
+                <div id="station-3" class="station-node hidden stage-card p-3.5 text-center screen-fade-3d">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[11px] font-extrabold text-il-blue">תחנה 3 מתוך 12 (9 נק')</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full font-bold">מונה מפלגות</span>
+                    </div>
+                    <h3 class="text-sm sm:text-base font-black text-slate-900 mb-0.5">סך הרשימות המתמודדות</h3>
+                    <p class="text-[10px] text-slate-600 mb-2 font-semibold">כיילו את המונה לסך הרשימות המפלגתיות לכנסת ה-26.</p>
+
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center my-auto shadow-inner">
+                        <div class="text-[10px] text-slate-500 font-bold mb-1">מספר הרשימות שנרשמו</div>
+                        <div id="s3-display" class="inline-block text-4xl font-mono font-black text-slate-800 px-7 py-2 rounded-xl bg-white border border-slate-200 shadow-sm">
+                            20
+                        </div>
+                        <div class="grid grid-cols-4 gap-1.5 mt-3">
+                            <button type="button" onclick="adjustStation3(-5)" class="bg-white border border-slate-300 text-slate-700 font-black py-2 rounded-lg text-xs shadow-sm active:scale-95">-5</button>
+                            <button type="button" onclick="adjustStation3(-1)" class="bg-white border border-slate-300 text-slate-700 font-black py-2 rounded-lg text-xs shadow-sm active:scale-95">-1</button>
+                            <button type="button" onclick="adjustStation3(1)" class="bg-white border border-slate-300 text-slate-700 font-black py-2 rounded-lg text-xs shadow-sm active:scale-95">+1</button>
+                            <button type="button" onclick="adjustStation3(5)" class="bg-white border border-slate-300 text-slate-700 font-black py-2 rounded-lg text-xs shadow-sm active:scale-95">+5</button>
+                        </div>
+                    </div>
+
+                    <button id="s3-btn-continue" onclick="verifyStation(3)" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-2.5 rounded-xl text-xs shadow-md active:scale-95 mt-auto">
+                        בקש אימות פיצוח
+                    </button>
+                </div>
+
+                <!-- STATION 4: Turnout Meter (70.6%) (9 pts) -->
+                <div id="station-4" class="station-node hidden stage-card p-3.5 text-center screen-fade-3d">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[11px] font-extrabold text-il-blue">תחנה 4 מתוך 12 (9 נק')</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full font-bold">מד הצבעה</span>
+                    </div>
+                    <h3 class="text-sm sm:text-base font-black text-slate-900 mb-0.5">שיעור ההצבעה הכללי</h3>
+                    <p class="text-[10px] text-slate-600 mb-2 font-semibold">כיילו את המחוג לאחוז ההצבעה מקרב כלל בעלי זכות הבחירה.</p>
+
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 my-auto text-center shadow-inner">
+                        <div class="text-[10px] text-slate-500 font-bold mb-1">אחוז הצבעה</div>
+                        <div id="s4-display-box" class="inline-block px-6 py-2 rounded-xl bg-white border border-slate-200 text-3xl font-mono font-black text-slate-800 shadow-sm">
+                            <span id="s4-val">50.0</span>%
+                        </div>
+                        <div class="mt-3">
+                            <input type="range" id="s4-slider" min="500" max="850" value="500" oninput="updateStation4()" class="w-full cursor-pointer">
+                        </div>
+                        <div class="flex justify-between text-[10px] text-slate-400 font-mono mt-1 font-bold">
+                            <span>50.0%</span>
+                            <span>67.5%</span>
+                            <span>85.0%</span>
+                        </div>
+                    </div>
+
+                    <button id="s4-btn-continue" onclick="verifyStation(4)" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-2.5 rounded-xl text-xs shadow-md active:scale-95 mt-auto">
+                        בקש אימות פיצוח
+                    </button>
+                </div>
+
+                <!-- STATION 5: Threshold & Seats (3.25% & 4 seats) (8 pts) -->
+                <div id="station-5" class="station-node hidden stage-card p-3.5 text-center screen-fade-3d">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[11px] font-extrabold text-il-blue">תחנה 5 מתוך 12 (8 נק')</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full font-bold">שער החסימה</span>
+                    </div>
+                    <h3 class="text-sm sm:text-base font-black text-slate-900 mb-0.5">אחוז החסימה ומנדטים</h3>
+                    <p class="text-[10px] text-slate-600 mb-2 font-semibold">כיילו את אחוז החסימה ואת כמות המנדטים המינימלית שהוא שווה.</p>
+
+                    <div class="space-y-2.5 bg-slate-50 p-3 rounded-xl border border-slate-200 my-auto shadow-inner">
+                        <div>
+                            <div class="text-[10px] text-slate-500 font-bold mb-0.5">אחוז החסימה</div>
+                            <div id="s5-box-pct" class="inline-block px-3 py-1 bg-white border border-slate-200 rounded-lg font-mono font-black text-base text-slate-800 shadow-sm">
+                                <span id="s5-val-pct">1.50</span>%
+                            </div>
+                            <div class="mt-1.5">
+                                <input type="range" id="s5-slider-pct" min="100" max="500" step="25" value="150" oninput="updateStation5()" class="w-full cursor-pointer">
+                            </div>
+                        </div>
+
+                        <div class="pt-2 border-t border-slate-200">
+                            <div class="text-[10px] text-slate-500 font-bold mb-1">שווה ערך מנדטים בכנסת</div>
+                            <div class="grid grid-cols-4 gap-1">
+                                <button type="button" onclick="setStation5Seats(2)" id="s5-btn-seat-2" class="py-1.5 rounded-lg text-xs font-black bg-white border border-slate-200 text-slate-700 shadow-sm active:scale-95">2</button>
+                                <button type="button" onclick="setStation5Seats(3)" id="s5-btn-seat-3" class="py-1.5 rounded-lg text-xs font-black bg-white border border-slate-200 text-slate-700 shadow-sm active:scale-95">3</button>
+                                <button type="button" onclick="setStation5Seats(4)" id="s5-btn-seat-4" class="py-1.5 rounded-lg text-xs font-black bg-white border border-slate-200 text-slate-700 shadow-sm active:scale-95">4</button>
+                                <button type="button" onclick="setStation5Seats(5)" id="s5-btn-seat-5" class="py-1.5 rounded-lg text-xs font-black bg-white border border-slate-200 text-slate-700 shadow-sm active:scale-95">5</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="s5-btn-continue" onclick="verifyStation(5)" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-2.5 rounded-xl text-xs shadow-md active:scale-95 mt-auto">
+                        בקש אימות פיצוח
+                    </button>
+                </div>
+
+                <!-- STATION 6: Day of the Week (Tuesday / 3) (8 pts) -->
+                <div id="station-6" class="station-node hidden stage-card p-3.5 text-center screen-fade-3d">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[11px] font-extrabold text-il-blue">תחנה 6 מתוך 12 (8 נק')</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full font-bold">חוגת ימות השבוע</span>
+                    </div>
+                    <h3 class="text-sm sm:text-base font-black text-slate-900 mb-0.5">היום הקבוע בחוק יסוד</h3>
+                    <p class="text-[10px] text-slate-600 mb-2 font-semibold">בחרו את היום הקבוע בחוק לקיום הבחירות לכנסת.</p>
+
+                    <div class="grid grid-cols-2 gap-2 my-auto">
+                        <button type="button" onclick="selectStation6Day(1, this)" class="s6-day-btn p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 font-black text-xs text-slate-700 shadow-sm active:scale-95">
+                            יום ראשון (1)
+                        </button>
+                        <button type="button" onclick="selectStation6Day(2, this)" class="s6-day-btn p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 font-black text-xs text-slate-700 shadow-sm active:scale-95">
+                            יום שני (2)
+                        </button>
+                        <button type="button" onclick="selectStation6Day(3, this)" class="s6-day-btn p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 font-black text-xs text-slate-700 shadow-sm active:scale-95">
+                            יום שלישי (3)
+                        </button>
+                        <button type="button" onclick="selectStation6Day(4, this)" class="s6-day-btn p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 font-black text-xs text-slate-700 shadow-sm active:scale-95">
+                            יום רביעי (4)
+                        </button>
+                    </div>
+
+                    <div id="s6-status" class="text-center text-[10.5px] font-black text-slate-600 my-1">
+                        בחרו יום ולחצו על אימות פיצוח
+                    </div>
+
+                    <button id="s6-btn-continue" onclick="verifyStation(6)" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-2.5 rounded-xl text-xs shadow-md active:scale-95 mt-auto">
+                        בקש אימות פיצוח
+                    </button>
+                </div>
+
+                <!-- STATION 7: Sorting Ballots (8 pts) -->
+                <div id="station-7" class="station-node hidden stage-card p-3.5 text-center screen-fade-3d">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[11px] font-extrabold text-il-blue">תחנה 7 מתוך 12 (8 נק')</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full font-bold">מיון קולות</span>
+                    </div>
+                    <h3 class="text-sm sm:text-base font-black text-slate-900 mb-0.5">קולות כשרים מול פסולים</h3>
+                    <p class="text-[10px] text-slate-600 mb-2 font-semibold">סווגו כל אחד משלושת המקרים לקול כשר או קול פסול.</p>
+
+                    <div class="space-y-1.5 my-auto text-right">
+                        <div class="p-2 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between gap-1 shadow-inner">
+                            <span class="font-black text-slate-800 text-[10.5px] truncate">פתק מפלגה רשמי ותקין</span>
+                            <div class="flex gap-1 shrink-0">
+                                <button type="button" onclick="setStation7Choice(0, 'valid', this)" class="s7-btn-0 px-2.5 py-1 rounded-lg border border-slate-300 font-black bg-white text-[10.5px] shadow-sm active:scale-95">כשר</button>
+                                <button type="button" onclick="setStation7Choice(0, 'invalid', this)" class="s7-btn-0 px-2.5 py-1 rounded-lg border border-slate-300 font-black bg-white text-[10.5px] shadow-sm active:scale-95">פסול</button>
+                            </div>
+                        </div>
+
+                        <div class="p-2 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between gap-1 shadow-inner">
+                            <span class="font-black text-slate-800 text-[10.5px] truncate">פתק עם קשקוש או סימון</span>
+                            <div class="flex gap-1 shrink-0">
+                                <button type="button" onclick="setStation7Choice(1, 'valid', this)" class="s7-btn-1 px-2.5 py-1 rounded-lg border border-slate-300 font-black bg-white text-[10.5px] shadow-sm active:scale-95">כשר</button>
+                                <button type="button" onclick="setStation7Choice(1, 'invalid', this)" class="s7-btn-1 px-2.5 py-1 rounded-lg border border-slate-300 font-black bg-white text-[10.5px] shadow-sm active:scale-95">פסול</button>
+                            </div>
+                        </div>
+
+                        <div class="p-2 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between gap-1 shadow-inner">
+                            <span class="font-black text-slate-800 text-[10.5px] truncate">מעטפה קרועה או פתוחה</span>
+                            <div class="flex gap-1 shrink-0">
+                                <button type="button" onclick="setStation7Choice(2, 'valid', this)" class="s7-btn-2 px-2.5 py-1 rounded-lg border border-slate-300 font-black bg-white text-[10.5px] shadow-sm active:scale-95">כשר</button>
+                                <button type="button" onclick="setStation7Choice(2, 'invalid', this)" class="s7-btn-2 px-2.5 py-1 rounded-lg border border-slate-300 font-black bg-white text-[10.5px] shadow-sm active:scale-95">פסול</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="s7-btn-continue" onclick="verifyStation(7)" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-2.5 rounded-xl text-xs shadow-md active:scale-95 mt-auto">
+                        בקש אימות פיצוח
+                    </button>
+                </div>
+
+                <!-- STATION 8: White Ballot Roles (8 pts) -->
+                <div id="station-8" class="station-node hidden stage-card p-3.5 text-center screen-fade-3d">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[11px] font-extrabold text-il-blue">תחנה 8 מתוך 12 (8 נק')</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full font-bold">הפתק הלבן</span>
+                    </div>
+                    <h3 class="text-sm sm:text-base font-black text-slate-900 mb-0.5">שני השימושים בפתק הלבן</h3>
+                    <p class="text-[10px] text-slate-600 mb-2 font-semibold">סמנו את 2 התפקידים של פתק לבן בקלפי.</p>
+
+                    <div class="space-y-1.5 my-auto text-right">
+                        <label class="s8-option flex items-center gap-2.5 p-2 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer text-[11px] font-bold text-slate-800 shadow-sm active:scale-[0.99]">
+                            <input type="checkbox" id="s8-cb-1" class="w-4 h-4 rounded text-il-blue" data-correct="true">
+                            <span>פתק מחאה המבטא אי רצון מהמתמודדים</span>
+                        </label>
+                        <label class="s8-option flex items-center gap-2.5 p-2 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer text-[11px] font-bold text-slate-800 shadow-sm active:scale-[0.99]">
+                            <input type="checkbox" id="s8-cb-2" class="w-4 h-4 rounded text-il-blue" data-correct="false">
+                            <span>הצבעה המקנה 2 מנדטים נוספים</span>
+                        </label>
+                        <label class="s8-option flex items-center gap-2.5 p-2 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer text-[11px] font-bold text-slate-800 shadow-sm active:scale-[0.99]">
+                            <input type="checkbox" id="s8-cb-3" class="w-4 h-4 rounded text-il-blue" data-correct="true">
+                            <span>פתק גיבוי ידני במידה ופתק המפלגה אזל</span>
+                        </label>
+                        <label class="s8-option flex items-center gap-2.5 p-2 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer text-[11px] font-bold text-slate-800 shadow-sm active:scale-[0.99]">
+                            <input type="checkbox" id="s8-cb-4" class="w-4 h-4 rounded text-il-blue" data-correct="false">
+                            <span>אישור כניסה מיוחד לוועדת הקלפי</span>
+                        </label>
+                    </div>
+
+                    <button id="s8-btn-continue" onclick="verifyStation(8)" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-2.5 rounded-xl text-xs shadow-md active:scale-95 mt-auto">
+                        בקש אימות פיצוח
+                    </button>
+                </div>
+
+                <!-- STATION 9: Agreements Matching (8 pts) -->
+                <div id="station-9" class="station-node hidden stage-card p-3.5 text-center screen-fade-3d">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[11px] font-extrabold text-il-blue">תחנה 9 מתוך 12 (8 נק')</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full font-bold">סיווג הסכמים</span>
+                    </div>
+                    <h3 class="text-sm sm:text-base font-black text-slate-900 mb-0.5">עודפים מול קואליציה</h3>
+                    <p class="text-[10px] text-slate-600 mb-2 font-semibold">התאימו לכל הגדרה את סוג ההסכם המתאים.</p>
+
+                    <div class="space-y-2 my-auto text-right">
+                        <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl shadow-inner">
+                            <p class="text-[11px] font-black text-slate-800 mb-1.5">חיבור קולות מיותרים שלא הספיקו למנדט:</p>
+                            <div class="flex gap-1.5">
+                                <button type="button" onclick="setStation9Agreement(0, 'surplus', this)" class="s9-btn-0 flex-1 py-1.5 text-xs font-black bg-white border border-slate-300 rounded-lg shadow-sm active:scale-95">הסכם עודפים</button>
+                                <button type="button" onclick="setStation9Agreement(0, 'coalition', this)" class="s9-btn-0 flex-1 py-1.5 text-xs font-black bg-white border border-slate-300 rounded-lg shadow-sm active:scale-95">קואליציוני</button>
+                            </div>
+                        </div>
+
+                        <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl shadow-inner">
+                            <p class="text-[11px] font-black text-slate-800 mb-1.5">חלוקת תפקידים, תקציבים וקווי יסוד:</p>
+                            <div class="flex gap-1.5">
+                                <button type="button" onclick="setStation9Agreement(1, 'surplus', this)" class="s9-btn-1 flex-1 py-1.5 text-xs font-black bg-white border border-slate-300 rounded-lg shadow-sm active:scale-95">הסכם עודפים</button>
+                                <button type="button" onclick="setStation9Agreement(1, 'coalition', this)" class="s9-btn-1 flex-1 py-1.5 text-xs font-black bg-white border border-slate-300 rounded-lg shadow-sm active:scale-95">קואליציוני</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="s9-btn-continue" onclick="verifyStation(9)" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-2.5 rounded-xl text-xs shadow-md active:scale-95 mt-auto">
+                        בקש אימות פיצוח
+                    </button>
+                </div>
+
+                <!-- STATION 10: Legal Rules Switches (8 pts) -->
+                <div id="station-10" class="station-node hidden stage-card p-3.5 text-center screen-fade-3d">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[11px] font-extrabold text-il-blue">תחנה 10 מתוך 12 (8 נק')</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full font-bold">מפסקי החוק</span>
+                    </div>
+                    <h3 class="text-sm sm:text-base font-black text-slate-900 mb-0.5">זכויות והגבלות לפי דין</h3>
+                    <p class="text-[10px] text-slate-600 mb-2 font-semibold">סמנו את המצב החוקי של שני הכללים.</p>
+
+                    <div class="space-y-2 my-auto text-right">
+                        <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between gap-1 shadow-inner">
+                            <span class="text-[11px] font-black text-slate-800 truncate">אזרח בחופשה בחו"ל רשאי להצביע?</span>
+                            <div class="flex gap-1 shrink-0">
+                                <button type="button" onclick="setStation10Switch(0, 'yes', this)" class="s10-btn-0 px-3 py-1 rounded-lg text-xs font-black bg-white border border-slate-300 active:scale-95">כן</button>
+                                <button type="button" onclick="setStation10Switch(0, 'no', this)" class="s10-btn-0 px-3 py-1 rounded-lg text-xs font-black bg-white border border-slate-300 active:scale-95">לא</button>
+                            </div>
+                        </div>
+
+                        <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between gap-1 shadow-inner">
+                            <span class="text-[11px] font-black text-slate-800 truncate">מותר להתמודד ב-2 רשימות שונות?</span>
+                            <div class="flex gap-1 shrink-0">
+                                <button type="button" onclick="setStation10Switch(1, 'yes', this)" class="s10-btn-1 px-3 py-1 rounded-lg text-xs font-black bg-white border border-slate-300 active:scale-95">כן</button>
+                                <button type="button" onclick="setStation10Switch(1, 'no', this)" class="s10-btn-1 px-3 py-1 rounded-lg text-xs font-black bg-white border border-slate-300 active:scale-95">לא</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="s10-btn-continue" onclick="verifyStation(10)" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-2.5 rounded-xl text-xs shadow-md active:scale-95 mt-auto">
+                        בקש אימות פיצוח
+                    </button>
+                </div>
+
+                <!-- STATION 11: Double Envelopes & Prisoners (8 pts) -->
+                <div id="station-11" class="station-node hidden stage-card p-3.5 text-center screen-fade-3d">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[11px] font-extrabold text-il-blue">תחנה 11 מתוך 12 (8 נק')</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full font-bold">מעטפות כפולות</span>
+                    </div>
+                    <h3 class="text-sm sm:text-base font-black text-slate-900 mb-0.5">מעטפות כפולות והצבעת אסירים</h3>
+                    <p class="text-[10px] text-slate-600 mb-2 font-semibold">סמנו את תפקיד המעטפה וכיילו את השנה.</p>
+
+                    <div class="space-y-2.5 bg-slate-50 p-3 rounded-xl border border-slate-200 my-auto text-right shadow-inner">
+                        <div>
+                            <div class="text-[11px] font-black text-slate-800 mb-1">תפקיד המעטפה החיצונית:</div>
+                            <div class="grid grid-cols-2 gap-1.5">
+                                <button type="button" onclick="setStation11Envelope('id', this)" id="s11-env-id" class="p-2 bg-white border border-slate-300 rounded-lg font-black text-slate-700 text-[11px] shadow-sm active:scale-95">אימות המצביע</button>
+                                <button type="button" onclick="setStation11Envelope('party', this)" id="s11-env-party" class="p-2 bg-white border border-slate-300 rounded-lg font-black text-slate-700 text-[11px] shadow-sm active:scale-95">שם המפלגה</button>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 border-t border-slate-200 text-center">
+                            <div class="text-[11px] font-black text-slate-800 mb-0.5">שנת תחילת הצבעת אסירים:</div>
+                            <div id="s11-year-box" class="inline-block px-3 py-0.5 rounded-lg bg-white border border-slate-300 font-mono font-black text-base text-slate-800 mb-1 shadow-sm">
+                                <span id="s11-year-val">1970</span>
+                            </div>
+                            <input type="range" id="s11-year-slider" min="1970" max="2005" value="1970" oninput="updateStation11Year()" class="w-full cursor-pointer">
+                        </div>
+                    </div>
+
+                    <button id="s11-btn-continue" onclick="verifyStation(11)" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-2.5 rounded-xl text-xs shadow-md active:scale-95 mt-auto">
+                        בקש אימות פיצוח
+                    </button>
+                </div>
+
+                <!-- STATION 12: Pillars of Democracy (8 pts) -->
+                <div id="station-12" class="station-node hidden stage-card p-3.5 text-center screen-fade-3d">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[11px] font-extrabold text-il-blue">תחנה 12 מתוך 12 (8 נק')</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full font-bold">שלושת עמודי היסוד</span>
+                    </div>
+                    <h3 class="text-sm sm:text-base font-black text-slate-900 mb-0.5">דמוקרטיה, מצע ואופוזיציה</h3>
+                    <p class="text-[10px] text-slate-600 mb-2 font-semibold">התאימו את שלושת המושגים להגדרותיהם המדויקות.</p>
+
+                    <div class="space-y-1.5 my-auto text-right">
+                        <div class="p-2 bg-slate-50 border border-slate-200 rounded-xl shadow-inner">
+                            <span class="font-black text-slate-800 block text-[10.5px] mb-1">שלטון העם:</span>
+                            <div class="flex gap-1">
+                                <button type="button" onclick="setStation12Match(0, 'dem', this)" class="s12-g0 flex-1 py-1 bg-white border border-slate-300 rounded-md font-black text-[10px] active:scale-95">דמוקרטיה</button>
+                                <button type="button" onclick="setStation12Match(0, 'plat', this)" class="s12-g0 flex-1 py-1 bg-white border border-slate-300 rounded-md font-black text-[10px] active:scale-95">מצע</button>
+                                <button type="button" onclick="setStation12Match(0, 'opp', this)" class="s12-g0 flex-1 py-1 bg-white border border-slate-300 rounded-md font-black text-[10px] active:scale-95">אופוזיציה</button>
+                            </div>
+                        </div>
+
+                        <div class="p-2 bg-slate-50 border border-slate-200 rounded-xl shadow-inner">
+                            <span class="font-black text-slate-800 block text-[10.5px] mb-1">תוכנית עבודה והתחייבות:</span>
+                            <div class="flex gap-1">
+                                <button type="button" onclick="setStation12Match(1, 'dem', this)" class="s12-g1 flex-1 py-1 bg-white border border-slate-300 rounded-md font-black text-[10px] active:scale-95">דמוקרטיה</button>
+                                <button type="button" onclick="setStation12Match(1, 'plat', this)" class="s12-g1 flex-1 py-1 bg-white border border-slate-300 rounded-md font-black text-[10px] active:scale-95">מצע</button>
+                                <button type="button" onclick="setStation12Match(1, 'opp', this)" class="s12-g1 flex-1 py-1 bg-white border border-slate-300 rounded-md font-black text-[10px] active:scale-95">אופוזיציה</button>
+                            </div>
+                        </div>
+
+                        <div class="p-2 bg-slate-50 border border-slate-200 rounded-xl shadow-inner">
+                            <span class="font-black text-slate-800 block text-[10.5px] mb-1">מפלגות מחוץ לממשלה שמבקרות:</span>
+                            <div class="flex gap-1">
+                                <button type="button" onclick="setStation12Match(2, 'dem', this)" class="s12-g2 flex-1 py-1 bg-white border border-slate-300 rounded-md font-black text-[10px] active:scale-95">דמוקרטיה</button>
+                                <button type="button" onclick="setStation12Match(2, 'plat', this)" class="s12-g2 flex-1 py-1 bg-white border border-slate-300 rounded-md font-black text-[10px] active:scale-95">מצע</button>
+                                <button type="button" onclick="setStation12Match(2, 'opp', this)" class="s12-g2 flex-1 py-1 bg-white border border-slate-300 rounded-md font-black text-[10px] active:scale-95">אופוזיציה</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="s12-btn-continue" onclick="verifyStation(12)" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-2.5 rounded-xl text-xs shadow-md active:scale-95 mt-auto">
+                        בקש אימות פיצוח
+                    </button>
+                </div>
+            </div>
+
+            <!-- ==================================================== -->
+            <!-- FINAL QUIZ STAGE (12 Shuffled Questions)             -->
+            <!-- ==================================================== -->
+            <div id="screen-quiz" class="hidden w-full h-full stage-card p-3.5 flex flex-col justify-between screen-fade-3d">
+                <div>
+                    <div class="flex items-center justify-between border-b pb-1.5 mb-1.5">
+                        <span class="text-xs font-black text-slate-900">בוחן ידע מסכם באזרחות</span>
+                        <span id="quiz-counter" class="text-[10px] bg-blue-50 text-il-blue px-2.5 py-0.5 rounded-full font-black border border-blue-200">שאלה 1 מתוך 12</span>
+                    </div>
+
+                    <div class="bg-amber-50 border-r-4 border-amber-500 p-2 rounded-xl text-amber-900 flex items-center justify-between gap-1 mb-2 shadow-sm">
+                        <div class="text-[10.5px] font-black">חשוב לחשוב היטב לפני שלוחצים!</div>
+                        <span class="text-[9px] font-black bg-white text-amber-900 px-1.5 py-0.5 rounded border border-amber-200">-3 נק' לטעות</span>
+                    </div>
+
+                    <h3 id="quiz-question-text" class="text-xs sm:text-sm font-black text-slate-900 mb-2 leading-snug text-right">
+                        טעינת שאלה...
+                    </h3>
+                </div>
+
+                <div id="quiz-options-container" class="space-y-1.5 my-auto"></div>
+
+                <div class="text-center text-[9px] text-slate-400 font-bold pt-1">
+                    בחירה נכונה מקדמת לשאלה הבאה
+                </div>
+            </div>
+
+            <!-- ==================================================== -->
+            <!-- VICTORY CERTIFICATE SCREEN                           -->
+            <!-- ==================================================== -->
+            <div id="screen-victory" class="hidden w-full h-full stage-card p-4 text-center flex flex-col justify-between screen-fade-3d">
+                <div>
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-50 to-indigo-100 border-2 border-il-blue text-il-blue rounded-full flex items-center justify-center mx-auto mb-2 font-black text-xl shadow-md">
+                        ✓
+                    </div>
+                    <span class="px-2.5 py-0.5 bg-blue-50 text-il-blue text-[10px] font-black rounded-full border border-blue-200 mb-1 inline-block">
+                        תעודת גמר רשמית
+                    </span>
+                    <h2 class="text-lg font-black text-slate-900">פיצחתם את חדר הבריחה!</h2>
+                    <p class="text-[10.5px] text-slate-600 font-semibold">מערכת הבחירות לכנסת ה-26</p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3.5 text-right space-y-2 my-auto text-[11px] shadow-inner">
+                    <div class="flex justify-between border-b pb-1.5">
+                        <span class="text-slate-500 font-semibold">שם הקבוצה:</span>
+                        <span id="res-team" class="font-black text-il-navy"></span>
+                    </div>
+                    <div class="flex justify-between border-b pb-1.5">
+                        <span class="text-slate-500 font-semibold">שמות התלמידים:</span>
+                        <span id="res-members" class="font-black text-il-navy truncate max-w-[170px]"></span>
+                    </div>
+                    <div class="flex justify-between border-b pb-1.5">
+                        <span class="text-slate-500 font-semibold">זמן משחק כולל:</span>
+                        <span id="res-time" class="font-black font-mono text-il-navy"></span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-500 font-semibold">ציון סופי:</span>
+                        <span id="res-score" class="text-base font-black text-emerald-700"></span>
+                    </div>
+                </div>
+
+                <button type="button" onclick="location.reload()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-black py-2.5 rounded-xl transition text-xs shadow-md active:scale-95">
+                    התחל משחק חדש
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- 1. Topic Briefing Modal -->
+    <div id="modal-briefing" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-3.5">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-4 shadow-2xl border-2 border-sky-400 text-right max-h-[85dvh] flex flex-col justify-between">
+            <div>
+                <div class="flex items-center justify-between border-b pb-1.5 mb-2">
+                    <span id="briefing-station-tag" class="text-[10px] font-black bg-blue-50 text-il-blue px-2 py-0.5 rounded-full border border-blue-200"></span>
+                    <span class="text-[10px] text-slate-400 font-bold">מידע והעשרה</span>
+                </div>
+                <h4 id="briefing-title" class="text-xs sm:text-sm font-black text-slate-900 mb-2"></h4>
+                <div id="briefing-body" class="text-[11px] text-slate-700 leading-relaxed font-medium p-2.5 bg-slate-50 border border-slate-200 rounded-xl overflow-y-auto max-h-[46dvh]"></div>
+            </div>
+            <button id="btn-close-briefing" type="button" onclick="handleBriefingClose()" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-2.5 rounded-xl transition text-xs shadow-md active:scale-95 mt-3">
+                קראנו והבנו, קדימה למשימה
+            </button>
+        </div>
+    </div>
+
+    <!-- 2. "מוכנים? 4 3 2 1 ו..." 3D Animated Countdown Overlay -->
+    <div id="countdown-overlay" class="fixed inset-0 bg-slate-950/85 backdrop-blur-lg z-50 hidden flex flex-col items-center justify-center select-none">
+        <div id="countdown-banner" class="text-xl font-black text-sky-300 mb-4 tracking-wider">מוכנים?</div>
+        <div id="countdown-number" class="text-7xl font-mono font-black text-white countdown-num-anim drop-shadow-[0_0_25px_rgba(56,189,248,0.8)]">4</div>
+    </div>
+
+    <!-- 3. Time Up (Extend 60s for 5 points) Modal -->
+    <div id="modal-time-up" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-3.5">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-4 shadow-2xl border-2 border-rose-300 text-right">
+            <div class="flex items-center gap-2 text-rose-700 font-black mb-2">
+                <span class="w-7 h-7 rounded-full bg-rose-100 flex items-center justify-center text-xs font-black">!</span>
+                <span class="text-sm font-black">תמו 60 השניות לתחנה</span>
+            </div>
+            <p class="text-xs text-slate-700 mb-2 leading-relaxed font-semibold">
+                הזמן שהוקצב לתחנה זו הסתיים. כדי להמשיך לחקור ולפצח, באפשרותכם לקבל הארכה של 60 שניות נוספות.
+            </p>
+            <div class="bg-rose-50 border border-rose-200 text-rose-800 text-[11px] font-black p-2.5 rounded-xl mb-3">
+                עלות הארכת הזמן: 5 נקודות מהציון הקבוצתי.
+            </div>
+            <button type="button" onclick="buyTimeExtension()" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-2.5 rounded-xl transition text-xs shadow-md active:scale-95">
+                הארכת זמן ב-60 שניות (-5 נקודות)
+            </button>
+        </div>
+    </div>
+
+    <!-- 4. Wrong Answer / Verification Error Modal -->
+    <div id="modal-wrong-answer" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-3.5">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-4 shadow-2xl border-2 border-rose-300 text-right">
+            <div class="flex items-center gap-2 text-rose-700 font-black mb-2">
+                <span class="w-6 h-6 rounded-full bg-rose-100 flex items-center justify-center text-xs font-black">X</span>
+                <span class="text-sm font-black">הפיצוח אינו מדויק</span>
+            </div>
+            <p id="wrong-answer-reason" class="text-xs text-slate-700 mb-2 leading-relaxed font-semibold">
+                הנתונים שכיילתם או סימנתם אינם תואמים לחוקי האזרחות וכללי הבחירות בישראל.
+            </p>
+            <div class="bg-rose-50 border border-rose-200 text-rose-800 text-[11px] font-black p-2 rounded-xl mb-3">
+                הופחתו 3 נקודות מהציון הקבוצתי.
+            </div>
+            <p class="text-[10px] text-slate-500 mb-3 font-bold">
+                זכרו: חשוב לחשוב לפני שלוחצים. עיינו במידע ונסו שוב!
+            </p>
+            <button type="button" onclick="document.getElementById('modal-wrong-answer').classList.add('hidden')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-black py-2.5 rounded-xl transition text-xs shadow-md active:scale-95">
+                ננסה שוב
+            </button>
+        </div>
+    </div>
+
+    <!-- 5. Success Explanation Modal (Civics Lesson) -->
+    <div id="modal-explanation" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-3.5">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-4 shadow-2xl border-2 border-emerald-400 text-right max-h-[85dvh] flex flex-col justify-between">
+            <div>
+                <div class="flex items-center gap-2 text-emerald-700 font-black mb-1.5">
+                    <span class="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center text-xs font-black">✓</span>
+                    <span class="text-sm font-black">פיצוח מדויק!</span>
+                </div>
+                <h4 id="exp-title" class="text-xs sm:text-sm font-black text-slate-900 mb-1.5"></h4>
+                <div id="exp-text" class="text-[11px] text-slate-700 leading-relaxed font-medium p-2.5 bg-emerald-50/70 border border-emerald-200 rounded-xl overflow-y-auto max-h-[48dvh]"></div>
+            </div>
+            <button type="button" onclick="closeExplanationModal()" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-black py-2.5 rounded-xl transition text-xs shadow-md active:scale-95 mt-3">
+                המשך לתחנה הבאה
+            </button>
+        </div>
+    </div>
+
+    <!-- 6. Hint Modal -->
+    <div id="modal-hint" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-3.5">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-4 shadow-2xl border-2 border-amber-300 text-right">
+            <div class="flex items-center gap-2 text-amber-700 font-black mb-2">
+                <span class="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center text-xs font-black">?</span>
+                <span class="text-sm font-black">רמז לחקירה</span>
+            </div>
+            <p id="hint-text" class="text-xs text-slate-700 mb-2.5 leading-relaxed font-semibold"></p>
+            <div class="bg-amber-50 border border-amber-200 text-amber-800 text-[10.5px] font-bold p-2 rounded-xl mb-3">
+                שימוש ברמז מפחית 3 נקודות מהציון הקבוצתי.
+            </div>
+            <button type="button" onclick="document.getElementById('modal-hint').classList.add('hidden')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-black py-2.5 rounded-xl transition text-xs shadow-md active:scale-95">
+                חזרה לפתרון
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const state = {
+            team: '',
+            members: '',
+            station: 1,
+            totalStations: 12,
+            score: 0,
+            secondsElapsed: 0,
+            stageSecondsLeft: 60,
+            elapsedInterval: null,
+            stageCountdownInterval: null,
+            isAudioMuted: false,
+            audioCtx: null,
+            modalCallback: null,
+            isBriefingOpen: false,
+            isReviewing: false,
+            quizIndex: 0,
+            // Station interactive state tracking
+            s1SelectedDay: null,
+            s2Vote: 16,
+            s2Run: 18,
+            s3Parties: 20,
+            s4Turnout: 500,
+            s5Pct: 150,
+            s5Seats: null,
+            s6Day: null,
+            s7Choices: [null, null, null],
+            s8Checked: [false, false, false, false],
+            s9Agreements: [null, null],
+            s10Switches: [null, null],
+            s11Envelope: null,
+            s11Year: 1970,
+            s12Matches: [null, null, null]
+        };
+
+        function initAudio() {
+            if (!state.audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (AudioContextClass) {
+                    state.audioCtx = new AudioContextClass();
+                }
+            }
+            if (state.audioCtx && state.audioCtx.state === 'suspended') {
+                state.audioCtx.resume();
+            }
+        }
+
+        function playTone(freq, duration, type = 'sine') {
+            if (state.isAudioMuted) return;
+            try {
+                initAudio();
+                if (!state.audioCtx) return;
+                const osc = state.audioCtx.createOscillator();
+                const gain = state.audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, state.audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.08, state.audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, state.audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(state.audioCtx.destination);
+                osc.start();
+                osc.stop(state.audioCtx.currentTime + duration);
+            } catch (e) {
+                // Audio fallback silence
+            }
+        }
+
+        function playTick() {
+            if (state.isAudioMuted) return;
+            try {
+                initAudio();
+                if (!state.audioCtx) return;
+                const osc = state.audioCtx.createOscillator();
+                const gain = state.audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(1200, state.audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.025, state.audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, state.audioCtx.currentTime + 0.025);
+                osc.connect(gain);
+                gain.connect(state.audioCtx.destination);
+                osc.start();
+                osc.stop(state.audioCtx.currentTime + 0.025);
+            } catch (e) {}
+        }
+
+        function toggleAudio() {
+            state.isAudioMuted = !state.isAudioMuted;
+            document.getElementById('audio-icon-text').innerText = state.isAudioMuted ? 'צליל: כבוי' : 'צליל: פעיל';
+            if (!state.isAudioMuted) playTone(580, 0.08);
+        }
+
+        const stationBriefings = [
+            {
+                title: "איתור מועד הבחירות הכלליות",
+                body: `בישראל, הבחירות לכנסת הן חג של הדמוקרטיה הייצוגית. חוק יסוד: הכנסת קובע כי הבחירות מתקיימות מדי ארבע שנים, בחודש חשוון (הנופל לרוב באוקטובר או תחילת נובמבר). בבחירות הראשונות לאספה המכוננת ב-1949 השתתפו כ-440 אלף בעלי זכות הצבעה. בבחירות לכנסת ה-26 נבחר יום שלישי הרביעי של חודש אוקטובר 2026. בחנו את לוח השנה היטב: סרקו את ימי השלישי של חודש אוקטובר ואתרו את המועד המדויק.`
+            },
+            {
+                title: "הזכות לבחור ולהיבחר",
+                body: `הזכות לבחור (זכות בחירה אקטיבית) והזכות להיבחר (זכות בחירה פסיבית) הן מעמודי התווך של שוויון אזרחי. בדמוקרטיות מערביות רבות קיים פער מכוון בין הגיל שבו אזרח רשאי להציל או להשפיע בקלפי, לבין הגיל שבו הוא נושא באחריות כחבר פרלמנט ומחוקק. בישראל, הגיל להצבעה הוא גיל הבגרות האזרחית (18), ואילו להתמודדות לכנסת נדרש גיל מעט בוגר יותר (21). חברו את שני הגילאים החוקיים יחד במשוואה.`
+            },
+            {
+                title: "ריבוי מפלגות בדמוקרטיה הישראלית",
+                body: `ישראל מתאפיינת בשיטת בחירות יחסית-ארצית המעודדת ייצוג של קשת רחבה של קבוצות, דתות, זרמים ועמדות אידיאולוגיות. בניגוד למדינות עם שיטה אזורית או דו-מפלגתית (כמו ארה"ב), בישראל מוגשות עשרות רשימות לוועדת הבחירות המרכזית. לקראת הבחירות לכנסת ה-26, לאחר איחודים ואישורים, מספר הרשימות המתמודדות הרשמי עומד על כמעט ארבעים רשימות (38 מפלגות).`
+            },
+            {
+                title: "שיעור ההצבעה ומעורבות אזרחית",
+                body: `אחוז ההצבעה מודד את מידת המעורבות של האזרחים בהליך הדמוקרטי. בישראל יום הבחירות הוא יום שבתון רשמי כדי לאפשר לכל אזרח להצביע. בבחירות הראשונות בשנת 1949 עמד שיעור ההצבעה על כמעט 87%. במערכת הבחירות הקודמת הגיע שיעור ההצבעה הכללי מקרב בעלי זכות הבחירה למעט מעל שבעים אחוזים (70.6%). כיילו את המחוג בדיוק לערך זה.`
+            },
+            {
+                title: "אחוז החסימה ושווי המנדטים",
+                body: `אחוז החסימה נועד למנוע פיצול קיצוני בפרלמנט ולוודא שמפלגות הנכנסות לכנסת נהנות מתמיכה ציבורית ממשית. לאורך השנים עלה אחוז החסימה בישראל מ-1% (1949), ל-1.5% (1992), ל-2% (2003), ועד לקביעתו הנוכחית על 3.25% מכלל הקולות הכשרים. מפלגה שעוברת סף זה זוכה לייצוג מינימלי של ארבעה חברי כנסת (4 מנדטים).`
+            },
+            {
+                title: "היום הקבוע בחוק יסוד: הכנסת",
+                body: `סעיף 9 לחוק יסוד: הכנסת מסדיר את יום קיום הבחירות. כדי למנוע חילול שבת בהכנות לקלפיות או בספירת הקולות, נקבע במפורש כי הבחירות יתקיימו באמצע השבוע. החוק בחר ביום השלישי בשבוע (יום שלישי), שנחשב באופן מסורתי גם ליום של "פעמיים כי טוב".`
+            },
+            {
+                title: "טוהר הבחירות: קולות כשרים מול פסולים",
+                body: `ועדת הקלפי מונה את הקולות בהליך מדוקדק ושקוף. קול כשר הוא פתק הצבעה רשמי שהוטל במעטפה חתומה ותקינה. לעומת זאת, כל סימון, כיתוב חיצוני, קשקוש, פתק קרוע או מעטפה שנפתחה ואינה אטומה פוסלים את הקול כדי להגן על עקרון החשאיות ולמנוע זיהוי של המצביע.`
+            },
+            {
+                title: "תעלומת הפתק הלבן",
+                body: `בכל תא הצבעה מונחים פתקים ריקים (לבנים). לפתק הלבן שני שימושים בלבד: 1. פתק גיבוי ידני – אם אזלו פתקי אותיות המפלגה במגש, הבוחר רשאי לכתוב בעצמו את אותיות הרשימה; 2. הבעת מחאה – הטלת פתק ריק נספרת כקול פסול ומבטאת חוסר אמון במתמודדים, אך אינה מעניקה מנדטים לאף מפלגה.`
+            },
+            {
+                title: "הסכמי עודפים לעומת הסכמים קואליציוניים",
+                body: `הסכם עודפים (לפי חוק בדר-עופר) הוא הסכם משפטי-מתמטי בין שתי רשימות מתמודדות, המאפשר לחבר את עודפי הקולות שלהן כדי לזכות במנדט נוסף. לעומת זאת, הסכם קואליציוני הוא חוזה פוליטי מורכב בין מפלגות לאחר הבחירות, המסדיר חלוקת תפקידי שרים, תקציבים וקווי יסוד להקמת הממשלה.`
+            },
+            {
+                title: "גבולות הזכות והגבלות חוקיות",
+                body: `הזכות לבחור בישראל מוגבלת לשטח המדינה: אזרחים השוהים בחופשה פרטית בחו"ל אינם יכולים להצביע בשגרירויות (הזכות שמורה רק לשליחי מדינה רשמיים). בנוסף, מועמד אינו יכול לפצל את נאמנותו – החוק אוסר על אדם להתמודד לכנסת ביותר מרשימה אחת בו-זמנית.`
+            },
+            {
+                title: "מעטפות כפולות והצבעת אסירים",
+                body: `שיטת המעטפות הכפולות מגנה על חשאיות ההצבעה עבור מצביעים מחוץ לקלפי מגוריהם (חיילים, מאושפזים ואסירים). המעטפה החיצונית נושאת את פרטי המצביע לצורך אימות ברשימת הבוחרים ומניעת הצבעה כפולה, בעוד המעטפה הפנימית אטומה לחלוטין. זכותם של אסירים להצביע הוכרה בישראל בשנת 1984.`
+            },
+            {
+                title: "שלושת עמודי התווך של המשטר",
+                body: `משטר דמוקרטי נשען על שלושה יסודות מרכזיים: 'דמוקרטיה' – שלטון העם המבטיח שוויון וזכויות אדם; 'מצע' – החוזה הרעיוני ותוכנית העבודה שהמפלגה מציגה לבוחריה; ו'אופוזיציה' – סיעות הכנסת שאינן שותפות בממשלה, שתפקידן לפקח, לבקר ולהציע חלופה שלטונית.`
+            }
+        ];
+
+        const stationHints = [
+            "חפשו את יום שלישי הרביעי של אוקטובר 2026 (מספר הגדול מ-25).",
+            "גיל הבחירה בישראל הוא 18 וגיל ההתמודדות הוא 21. סכמו אותם.",
+            "סך הרשימות המתמודדות הוא מספר זוגי בין 35 ל-40.",
+            "הערך הוא בדיוק 70.6%. הזיזו את המחוון בין 70 ל-71.",
+            "אחוז החסימה כיום הוא 3.25%, והוא מקנה בדיוק 4 מושבים בכנסת.",
+            "היום הקבוע בחוק יסוד הכנסת הוא יום שלישי (יום 3).",
+            "רק פתק מפלגה רשמי ותקין הוא כשר. פתק מסומן ומעטפה קרועה נפסלים.",
+            "סמנו את 'מחאה' ואת 'פתק גיבוי ידני'. הפתק הלבן אינו מעניק מנדטים.",
+            "חיבור קולות שייך להסכם עודפים; חלוקת תפקידים ושרים שייכת להסכם קואליציוני.",
+            "התשובה לשתי השאלות היא 'לא' מוחלט על פי החוק בישראל.",
+            "המעטפה החיצונית מיועדת לאימות זהות המצביע, ושנת הצבעת אסירים היא 1984.",
+            "דמוקרטיה היא שלטון העם; מצע הוא תוכנית עבודה; אופוזיציה מבקרת את הממשלה."
+        ];
+
+        const stationExplanations = [
+            {
+                title: "תאריך הבחירות: 27 באוקטובר 2026",
+                text: "על פי סעיף 9 לחוק יסוד: הכנסת, הבחירות מתקיימות ביום שלישי השלישי לחודש חשוון (אוקטובר 2026). תאריך זה נקבע כחג דמוקרטי שבו כל אזרח מעצב את עתיד המדינה."
+            },
+            {
+                title: "משוואת הגילאים: 18 + 21 = 39",
+                text: "סעיף 5 וסעיף 6 לחוק יסוד: הכנסת קובעים: גיל זכות הבחירה (לבחור) הוא 18, וגיל הזכות להיבחר כחבר כנסת הוא 21. סכומם הכולל הוא 39."
+            },
+            {
+                title: "38 רשימות מפלגתיות מתמודדות",
+                text: "שיטת הבחירות היחסית מעודדת מגוון של מפלגות ורשימות. בבחירות לכנסת ה-26 אושרו 38 רשימות מועמדים שונות על ידי ועדת הבחירות המרכזית."
+            },
+            {
+                title: "שיעור הצבעה: 70.6%",
+                text: "אחוז ההצבעה מקרב כלל בעלי זכות הבחירה בבחירות הקודמות עמד על 70.6%, נתון המעיד על מעורבות אזרחית ערה בהשוואה לדמוקרטיות מערביות רבות."
+            },
+            {
+                title: "אחוז החסימה: 3.25% (4 מנדטים)",
+                text: "רשימה מפלגתית חייבת לזכות בלפחות 3.25% מכלל הקולות הכשרים כדי להיכנס לכנסת. רף זה שווה ערך לארבעה מנדטים (מושבים) לפחות."
+            },
+            {
+                title: "יום הבחירות: יום שלישי",
+                text: "חוק יסוד: הכנסת קובע מפורשות כי יום הבחירות הוא יום שלישי בשבוע, יום חול שנקבע כיום שבתון רשמי כדי לאפשר לכל עובד לממש את זכותו."
+            },
+            {
+                title: "קולות כשרים ופסולים",
+                text: "קול כשר הוא אך ורק פתק תקין ורשמי במעטפה חתומה. כל סימון, כיתוב או פגם במעטפה פוסל את ההצבעה כדי לשמור על עקרון החשאיות."
+            },
+            {
+                title: "תפקידי הפתק הלבן",
+                text: "פתק לבן משמש אך ורק כפתק מחאה (קול שנפסל ואינו משפיע על מנדטים) או כפתק גיבוי ידני לכתיבת אותיות מפלגה שפתקיה אזלו במגש."
+            },
+            {
+                title: "עודפים לעומת קואליציה",
+                text: "הסכם עודפים מחבר קולות שיוריים בין שתי מפלגות לצורך השגת מנדט נוסף. הסכם קואליציוני קובע את הקמת הממשלה, קווי היסוד ותיקי השרים."
+            },
+            {
+                title: "הצבעה בחו\"ל והתמודדות ברשימה אחת",
+                text: "החוק אינו מאפשר הצבעה לישראלים הנופשים בחו\"ל (רק עובדי מדינה בשליחות רשמית רשאים להצביע). כמו כן, איסור חמור חל על התמודדות ביותר מרשימה אחת."
+            },
+            {
+                title: "מעטפות כפולות והצבעת אסירים",
+                text: "המעטפה החיצונית מאמתת את פרטי הבוחר ומבטיחה שלא הצביע פעמיים, בעוד המעטפה הפנימית שומרת על חשאיות מוחלטת. אסירים בבתי סוהר מצביעים בישראל משנת 1984."
+            },
+            {
+                title: "שלושת עמודי היסוד",
+                text: "דמוקרטיה היא שלטון העם; מצע הוא המסמך הרעיוני המחייב של המפלגה מול בוחריה; והאופוזיציה מבקרת ומפקחת על פעילות הממשלה למען הציבור."
+            }
+        ];
+
+        const quizQuestionsData = [
+            {
+                q: "מהו התאריך שבו מתקיימות הבחירות לכנסת ה-26?",
+                correct: "27.10.2026",
+                distractors: ["15.09.2026", "03.11.2026", "27.11.2026"]
+            },
+            {
+                q: "מהו הסכום המדויק של גיל זכות ההצבעה וגיל הזכות להתמודד בבחירות לכנסת?",
+                correct: "39 (18 להצבעה ועוד 21 להתמודדות)",
+                distractors: ["36 (18 להצבעה ועוד 18 להתמודדות)", "43 (18 להצבעה ועוד 25 להתמודדות)", "41 (16 להצבעה ועוד 25 להתמודדות)"]
+            },
+            {
+                q: "כמה רשימות מפלגתיות מתמודדות בבחירות לכנסת ה-26?",
+                correct: "38 מפלגות",
+                distractors: ["26 מפלגות", "45 מפלגות", "120 מפלגות"]
+            },
+            {
+                q: "מה היה שיעור ההצבעה מקרב כלל בעלי זכות הבחירה בבחירות הקודמות?",
+                correct: "70.6%",
+                distractors: ["62.4%", "78.2%", "50.1%"]
+            },
+            {
+                q: "מהו אחוז החסימה בישראל וכמה מנדטים הוא שווה?",
+                correct: "3.25% מכלל הקולות הכשרים, השווים ל-4 מנדטים",
+                distractors: ["2% מהקולות, השווים ל-2 מנדטים", "5% מהקולות, השווים ל-6 מנדטים", "3% מהקולות, השווים ל-3 מנדטים"]
+            },
+            {
+                q: "באיזה יום בשבוע נקבעו הבחירות לפי חוק יסוד: הכנסת?",
+                correct: "יום שלישי (יום 3 בשבוע)",
+                distractors: ["יום ראשון (יום 1 בשבוע)", "יום חמישי (יום 5 בשבוע)", "יום שישי (ערב שבת)"]
+            },
+            {
+                q: "מהי ההגדרה של 'קולות כשרים' בספירת הקלפי?",
+                correct: "כל קולות ההצבעה שנמצאו תקינים ועברו את הספירה הרשמית לאחר ניכוי הפסולים",
+                distractors: ["רק פתקים שנכתבו בכתב יד", "כלל המעטפות שהגיעו לקלפי כולל מעטפות ריקות", "קולות שניתנו אך ורק למפלגות הקואליציה"]
+            },
+            {
+                q: "לאילו שתי מטרות חוקיות שונות משמש הפתק הלבן בקלפי?",
+                correct: "הבעת מחאה נגד המתמודדים, ופתק גיבוי ידני במידה ופתק המפלגה אזל במגש",
+                distractors: ["מתן שני קולות למפלגה אחת, והצבעת תיירים", "הצבעה סודית של שרים, ובחירת ראש הממשלה בנפרד", "רישום תלונות לוועדת הקלפי, וסימון מעטפה שגויה"]
+            },
+            {
+                q: "מהו הסכם עודפים בין מפלגות?",
+                correct: "הסכם משפטי המאפשר לשתי מפלגות לחבר קולות מיותרים שלא הספיקו למנדט שלם",
+                distractors: ["הסכם לחלוקת תיקי שרים ותקציבי משרדים בממשלה", "הסכם המאפשר למפלגה גדולה למחוק מפלגה קטנה", "חוזה כספי להחזר הוצאות קמפיין הבחירות"]
+            },
+            {
+                q: "האם אזרח ישראלי הנופש בחו\"ל ביום הבחירות רשאי להצביע בנציגות ישראלית?",
+                correct: "לא, רק עובדי מדינה שנשלחו רשמית בשליחות המדינה זכאים להצביע בחו\"ל",
+                distractors: ["כן, כל אזרח ישראלי יכול להצביע בכל קונסוליה בעולם", "כן, בתנאי שנרשם באתר האינטרנט מראש", "לא, אין שום אפשרות להצביע מחוץ לשטח ישראל לאף אדם"]
+            },
+            {
+                q: "מה תפקיד המעטפה החיצונית בשיטת המעטפות הכפולות, ומאיזו שנה מצביעים אסירים?",
+                correct: "אימות פרטי המצביע למניעת הצבעה כפולה; אסירים מצביעים משנת 1984",
+                distractors: ["פרסום הפתק לעיני השופטים; אסירים מצביעים משנת 1948", "קביעת סדר כניסת המפלגות; אסירים מצביעים משנת 2000", "שמירת תעודת הזהות בתוך הקלפי; אסירים אינם זכאים להצביע"]
+            },
+            {
+                q: "מהי הגדרת הדמוקרטיה, מהו מצע ומה תפקיד האופוזיציה?",
+                correct: "שלטון העם; מצע הוא תוכנית העבודה וההתחייבות של המפלגה; אופוזיציה מבקרת ומפקחת על הממשלה",
+                distractors: ["שלטון השופטים; מצע הוא חוק יסוד; אופוזיציה מנהלת את משרדי הממשלה", "שלטון יחיד נבחר; מצע הוא תקציב המדינה; אופוזיציה מחוקקת ללא אישור כנסת", "שלטון הרוב בלבד; מצע הוא הסכם קואליציוני; אופוזיציה בוחרת את נשיא המדינה"]
+            }
+        ];
+
+        function handleStartGame(e) {
+            e.preventDefault();
+            initAudio();
+            playTone(523, 0.15);
+
+            state.team = document.getElementById('input-team-name').value.trim() || 'קבוצה אזרחית';
+            state.members = document.getElementById('input-team-members').value.trim() || 'תלמידים';
+
+            document.getElementById('hud-team-name').innerText = `${state.team} (${state.members})`;
+            document.getElementById('screen-welcome').classList.add('hidden');
+            document.getElementById('hud-stats').classList.remove('hidden');
+            document.getElementById('hud-progress-container').classList.remove('hidden');
+            document.getElementById('stations-wrapper').classList.remove('hidden');
+
+            initStation1Calendar();
+
+            // Start total game elapsed timer
+            state.secondsElapsed = 0;
+            clearInterval(state.elapsedInterval);
+            state.elapsedInterval = setInterval(() => {
+                state.secondsElapsed++;
+                const mm = String(Math.floor(state.secondsElapsed / 60)).padStart(2, '0');
+                const ss = String(state.secondsElapsed % 60).padStart(2, '0');
+                document.getElementById('hud-timer').innerText = `${mm}:${ss}`;
+            }, 1000);
+
+            openBriefingModal(1);
+        }
+
+        function startStageCountdown(reset = true) {
+            clearInterval(state.stageCountdownInterval);
+            if (reset) {
+                state.stageSecondsLeft = 60;
+            }
+            updateCountdownUI();
+
+            state.stageCountdownInterval = setInterval(() => {
+                if (state.isBriefingOpen) return;
+
+                state.stageSecondsLeft--;
+                playTick();
+                updateCountdownUI();
+
+                if (state.stageSecondsLeft <= 0) {
+                    clearInterval(state.stageCountdownInterval);
+                    playTone(220, 0.4, 'sawtooth');
+                    document.getElementById('modal-time-up').classList.remove('hidden');
+                }
+            }, 1000);
+        }
+
+        function updateCountdownUI() {
+            const el = document.getElementById('hud-countdown');
+            const card = document.getElementById('countdown-card');
+            el.innerText = state.stageSecondsLeft;
+
+            if (state.stageSecondsLeft <= 10) {
+                card.classList.add('border-rose-400', 'bg-rose-900/90', 'animate-pulse');
+            } else {
+                card.classList.remove('border-rose-400', 'bg-rose-900/90', 'animate-pulse');
+            }
+        }
+
+        function buyTimeExtension() {
+            state.score = Math.max(0, state.score - 5);
+            updateProgress();
+            document.getElementById('modal-time-up').classList.add('hidden');
+            playTone(440, 0.15);
+            startStageCountdown(true);
+        }
+
+        function openBriefingModal(n, isReview = false) {
+            state.isBriefingOpen = true;
+            state.isReviewing = isReview;
+            clearInterval(state.stageCountdownInterval);
+
+            const data = stationBriefings[n - 1];
+            if (!data) return;
+
+            const tagEl = document.getElementById('briefing-station-tag');
+            const titleEl = document.getElementById('briefing-title');
+            const bodyEl = document.getElementById('briefing-body');
+            const btnEl = document.getElementById('btn-close-briefing');
+
+            if (tagEl) tagEl.innerText = `תדריך לתחנה ${n} מתוך 12`;
+            if (titleEl) titleEl.innerText = data.title;
+            if (bodyEl) bodyEl.innerText = data.body;
+            if (btnEl) btnEl.innerText = isReview ? 'חזרה לפתרון התחנה' : 'קראנו והבנו, קדימה למשימה';
+
+            const modal = document.getElementById('modal-briefing');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function reopenBriefingModal() {
+            if (state.station <= 12) {
+                openBriefingModal(state.station, true);
+            }
+        }
+
+        function handleBriefingClose() {
+            const modal = document.getElementById('modal-briefing');
+            if (modal) modal.classList.add('hidden');
+
+            if (state.isReviewing) {
+                state.isBriefingOpen = false;
+                state.isReviewing = false;
+                startStageCountdown(false); // Resumes timer from where it paused
+            } else {
+                runReadyCountdownSequence();
+            }
+        }
+
+        const closeBriefingAndCountdown = handleBriefingClose;
+
+        function runReadyCountdownSequence() {
+            const overlay = document.getElementById('countdown-overlay');
+            const numEl = document.getElementById('countdown-number');
+            const banner = document.getElementById('countdown-banner');
+
+            overlay.classList.remove('hidden');
+            banner.innerText = "מוכנים?";
+
+            const steps = [
+                { text: "4", tone: 440 },
+                { text: "3", tone: 520 },
+                { text: "2", tone: 600 },
+                { text: "1", tone: 680 },
+                { text: "ו...", tone: 880 }
+            ];
+
+            let stepIdx = 0;
+
+            function showNextStep() {
+                if (stepIdx < steps.length) {
+                    numEl.classList.remove('countdown-num-anim');
+                    void numEl.offsetWidth;
+                    numEl.classList.add('countdown-num-anim');
+
+                    numEl.innerText = steps[stepIdx].text;
+                    playTone(steps[stepIdx].tone, 0.18, 'sine');
+                    stepIdx++;
+                    setTimeout(showNextStep, 720);
+                } else {
+                    overlay.classList.add('hidden');
+                    state.isBriefingOpen = false;
+                    showStationNode(state.station);
+                    startStageCountdown();
+                }
+            }
+
+            showNextStep();
+        }
+
+        function showStationNode(n) {
+            state.station = n;
+            document.querySelectorAll('.station-node').forEach(el => el.classList.add('hidden'));
+
+            const current = document.getElementById(`station-${n}`);
+            if (current) {
+                current.classList.remove('hidden');
+            }
+
+            updateProgress();
+        }
+
+        function updateProgress() {
+            document.getElementById('hud-score').innerText = state.score;
+
+            if (state.station <= state.totalStations) {
+                document.getElementById('hud-station-title').innerText = `תחנה ${state.station} מתוך ${state.totalStations}`;
+                document.getElementById('hud-stations-left').innerText = `נותרו ${state.totalStations - state.station + 1} תחנות`;
+                const pct = ((state.station - 1) / state.totalStations) * 100;
+                document.getElementById('hud-progress-bar').style.width = `${pct}%`;
+            } else {
+                document.getElementById('hud-station-title').innerText = `בוחן ידע מסכם`;
+                document.getElementById('hud-stations-left').innerText = `${state.quizIndex + 1}/${quizQuestionsData.length}`;
+                document.getElementById('hud-progress-bar').style.width = `100%`;
+            }
+        }
+
+        function requestHint() {
+            state.score = Math.max(0, state.score - 3);
+            updateProgress();
+            playTone(330, 0.2);
+
+            let txt = "";
+            if (state.station <= 12) {
+                txt = stationHints[state.station - 1];
+            } else {
+                txt = "חשבו על העקרונות שלמדתם ב-12 התחנות. שימו לב להגדרות המדויקות.";
+            }
+
+            document.getElementById('hint-text').innerText = txt;
+            document.getElementById('modal-hint').classList.remove('hidden');
+        }
+
+        // Station 1: Calendar
+        function initStation1Calendar() {
+            const container = document.getElementById('s1-calendar-days');
+            container.innerHTML = '';
+            for (let i = 0; i < 4; i++) {
+                const empty = document.createElement('div');
+                empty.className = 'py-0.5';
+                container.appendChild(empty);
+            }
+
+            for (let d = 1; d <= 31; d++) {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.innerText = d;
+                btn.className = 's1-day-btn py-1 rounded-md font-mono font-black text-[10px] bg-white border border-slate-200 hover:bg-blue-50 text-slate-700 transition shadow-sm active:scale-90';
+                btn.onclick = () => handleStation1Select(d, btn);
+                container.appendChild(btn);
+            }
+        }
+
+        function handleStation1Select(day, el) {
+            state.s1SelectedDay = day;
+            document.querySelectorAll('.s1-day-btn').forEach(btn => {
+                btn.className = 's1-day-btn py-1 rounded-md font-mono font-black text-[10px] bg-white border border-slate-200 hover:bg-blue-50 text-slate-700 transition shadow-sm active:scale-90';
+            });
+            el.className = 's1-day-btn py-1 rounded-md font-mono font-black text-[10px] bg-blue-700 text-white shadow-sm border-2 border-blue-700';
+            document.getElementById('s1-status').innerText = `נבחר: ${day} באוקטובר 2026. לחצו על אימות פיצוח לבדיקה.`;
+            playTone(400, 0.05);
+        }
+
+        // Station 2: Dual Age Sliders
+        function updateStation2() {
+            state.s2Vote = parseInt(document.getElementById('s2-slider-vote').value, 10);
+            state.s2Run = parseInt(document.getElementById('s2-slider-run').value, 10);
+            document.getElementById('s2-val-vote').innerText = state.s2Vote;
+            document.getElementById('s2-val-run').innerText = state.s2Run;
+            const sum = state.s2Vote + state.s2Run;
+            document.getElementById('s2-sum-val').innerText = sum;
+            playTone(300 + sum * 5, 0.03);
+        }
+
+        // Station 3: Party Counter
+        function adjustStation3(delta) {
+            state.s3Parties = Math.max(10, Math.min(60, state.s3Parties + delta));
+            document.getElementById('s3-display').innerText = state.s3Parties;
+            playTone(350 + state.s3Parties * 6, 0.05);
+        }
+
+        // Station 4: Turnout Slider
+        function updateStation4() {
+            state.s4Turnout = parseInt(document.getElementById('s4-slider').value, 10);
+            const val = (state.s4Turnout / 10).toFixed(1);
+            document.getElementById('s4-val').innerText = val;
+            playTone(400 + state.s4Turnout * 0.5, 0.02);
+        }
+
+        // Station 5: Threshold Slider and Seats
+        function updateStation5() {
+            state.s5Pct = parseInt(document.getElementById('s5-slider-pct').value, 10);
+            const val = (state.s5Pct / 100).toFixed(2);
+            document.getElementById('s5-val-pct').innerText = val;
+            playTone(300 + state.s5Pct, 0.02);
+        }
+
+        function setStation5Seats(seats) {
+            state.s5Seats = seats;
+            [2, 3, 4, 5].forEach(s => {
+                const btn = document.getElementById(`s5-btn-seat-${s}`);
+                if (s === seats) {
+                    btn.className = 'py-1.5 rounded-lg text-xs font-black bg-blue-700 text-white shadow-sm border-2 border-blue-700';
+                } else {
+                    btn.className = 'py-1.5 rounded-lg text-xs font-black bg-white border border-slate-200 text-slate-700 shadow-sm active:scale-95';
+                }
+            });
+            playTone(450, 0.05);
+        }
+
+        // Station 6: Day of Week
+        function selectStation6Day(dayNum, el) {
+            state.s6Day = dayNum;
+            document.querySelectorAll('.s6-day-btn').forEach(btn => {
+                btn.className = 's6-day-btn p-3 rounded-xl border border-slate-200 bg-slate-50 font-black text-xs text-slate-700 shadow-sm active:scale-95';
+            });
+            el.className = 's6-day-btn p-3 rounded-xl border-2 border-blue-700 bg-blue-50 font-black text-xs text-blue-800 shadow-md';
+            document.getElementById('s6-status').innerText = `נבחר יום ${dayNum}. לחצו על אימות פיצוח לבדיקה.`;
+            playTone(420, 0.05);
+        }
+
+        // Station 7: Sorting Votes
+        function setStation7Choice(itemIdx, choice, el) {
+            state.s7Choices[itemIdx] = choice;
+            document.querySelectorAll(`.s7-btn-${itemIdx}`).forEach(btn => {
+                btn.className = `s7-btn-${itemIdx} px-2.5 py-1 rounded-lg border border-slate-300 font-black bg-white text-[10.5px] shadow-sm active:scale-95 text-slate-700`;
+            });
+            el.className = `s7-btn-${itemIdx} px-2.5 py-1 rounded-lg border-2 border-blue-700 font-black bg-blue-700 text-white text-[10.5px] shadow-md`;
+            playTone(430, 0.05);
+        }
+
+        // Station 9: Agreements Matching
+        function setStation9Agreement(itemIdx, type, el) {
+            state.s9Agreements[itemIdx] = type;
+            document.querySelectorAll(`.s9-btn-${itemIdx}`).forEach(btn => {
+                btn.className = `s9-btn-${itemIdx} flex-1 py-1.5 text-xs font-black bg-white border border-slate-300 rounded-lg shadow-sm active:scale-95 text-slate-700`;
+            });
+            el.className = `s9-btn-${itemIdx} flex-1 py-1.5 text-xs font-black bg-blue-700 border-2 border-blue-700 text-white rounded-lg shadow-md`;
+            playTone(440, 0.05);
+        }
+
+        // Station 10: Legal Rules Switches
+        function setStation10Switch(idx, choice, el) {
+            state.s10Switches[idx] = choice;
+            document.querySelectorAll(`.s10-btn-${idx}`).forEach(btn => {
+                btn.className = `s10-btn-${idx} px-3 py-1 rounded-lg text-xs font-black bg-white border border-slate-300 active:scale-95 text-slate-700`;
+            });
+            el.className = `s10-btn-${idx} px-3 py-1 rounded-lg text-xs font-black bg-blue-700 border-2 border-blue-700 text-white shadow-sm`;
+            playTone(460, 0.05);
+        }
+
+        // Station 11: Double Envelope and Year
+        function setStation11Envelope(choice, el) {
+            state.s11Envelope = choice;
+            document.getElementById('s11-env-id').className = 'p-2 bg-white border border-slate-300 rounded-lg font-black text-slate-700 text-[11px] shadow-sm active:scale-95';
+            document.getElementById('s11-env-party').className = 'p-2 bg-white border border-slate-300 rounded-lg font-black text-slate-700 text-[11px] shadow-sm active:scale-95';
+            el.className = 'p-2 bg-blue-700 border-2 border-blue-700 rounded-lg font-black text-white text-[11px] shadow-md';
+            playTone(470, 0.05);
+        }
+
+        function updateStation11Year() {
+            state.s11Year = parseInt(document.getElementById('s11-year-slider').value, 10);
+            document.getElementById('s11-year-val').innerText = state.s11Year;
+            playTone(300 + (state.s11Year - 1970) * 8, 0.02);
+        }
+
+        // Station 12: Foundations Matching
+        function setStation12Match(rowIdx, term, el) {
+            state.s12Matches[rowIdx] = term;
+            document.querySelectorAll(`.s12-g${rowIdx}`).forEach(btn => {
+                btn.className = `s12-g${rowIdx} flex-1 py-1 bg-white border border-slate-300 rounded-md font-black text-[10px] active:scale-95 text-slate-700`;
+            });
+            el.className = `s12-g${rowIdx} flex-1 py-1 bg-blue-700 border-2 border-blue-700 text-white rounded-md font-black text-[10px] shadow-sm`;
+            playTone(490, 0.05);
+        }
+
+        function verifyStation(n) {
+            let isCorrect = false;
+            let reason = "הנתונים שהזנתם אינם נכונים. עיינו במידע על התחנה ונסו שוב.";
+
+            if (n === 1) {
+                isCorrect = (state.s1SelectedDay === 27);
+                if (!isCorrect) reason = "התאריך שסומן בלוח השנה אינו תואם את יום הבחירות באוקטובר 2026.";
+            } else if (n === 2) {
+                isCorrect = (state.s2Vote === 18 && state.s2Run === 21);
+                if (!isCorrect) reason = "כיול הגילאים אינו מדויק. זכרו: זכות בחירה בגיל 18 והתמודדות בגיל 21.";
+            } else if (n === 3) {
+                isCorrect = (state.s3Parties === 38);
+                if (!isCorrect) reason = "מספר הרשימות אינו נכון. כיילו את המונה בדיוק ל-38 רשימות.";
+            } else if (n === 4) {
+                isCorrect = (state.s4Turnout === 706);
+                if (!isCorrect) reason = "אחוז ההצבעה אינו מדויק. כיילו את המחוג ל-70.6%.";
+            } else if (n === 5) {
+                isCorrect = (state.s5Pct === 325 && state.s5Seats === 4);
+                if (!isCorrect) reason = "אחוז החסימה הוא 3.25% והוא שווה בדיוק ל-4 מנדטים.";
+            } else if (n === 6) {
+                isCorrect = (state.s6Day === 3);
+                if (!isCorrect) reason = "היום הקבוע בחוק יסוד הכנסת הוא יום שלישי (3).";
+            } else if (n === 7) {
+                isCorrect = (state.s7Choices[0] === 'valid' && state.s7Choices[1] === 'invalid' && state.s7Choices[2] === 'invalid');
+                if (!isCorrect) reason = "מיון הקולות אינו נכון. רק פתק מפלגה רשמי ותקין הוא כשר.";
+            } else if (n === 8) {
+                const cb1 = document.getElementById('s8-cb-1').checked;
+                const cb2 = document.getElementById('s8-cb-2').checked;
+                const cb3 = document.getElementById('s8-cb-3').checked;
+                const cb4 = document.getElementById('s8-cb-4').checked;
+                isCorrect = (cb1 && !cb2 && cb3 && !cb4);
+                if (!isCorrect) reason = "הפתק הלבן משמש רק למחאה וכפתק גיבוי ידני (הוא אינו מעניק מנדטים).";
+            } else if (n === 9) {
+                isCorrect = (state.s9Agreements[0] === 'surplus' && state.s9Agreements[1] === 'coalition');
+                if (!isCorrect) reason = "סיווג ההסכמים שגוי. חיבור קולות שייך לעודפים; חלוקת תפקידים לקואליציה.";
+            } else if (n === 10) {
+                isCorrect = (state.s10Switches[0] === 'no' && state.s10Switches[1] === 'no');
+                if (!isCorrect) reason = "על פי הדין: אסור לנופשים להצביע בחו\"ל, ואסור להתמודד ב-2 רשימות.";
+            } else if (n === 11) {
+                isCorrect = (state.s11Envelope === 'id' && state.s11Year === 1984);
+                if (!isCorrect) reason = "המעטפה החיצונית מיועדת לאימות המצביע, ושנת הצבעת אסירים היא 1984.";
+            } else if (n === 12) {
+                isCorrect = (state.s12Matches[0] === 'dem' && state.s12Matches[1] === 'plat' && state.s12Matches[2] === 'opp');
+                if (!isCorrect) reason = "התאמת המושגים שגויה: שלטון העם (דמוקרטיה), תוכנית (מצע), מבקרת (אופוזיציה).";
+            }
+
+            if (isCorrect) {
+                handleStationSuccess(n);
+            } else {
+                handleStationError(reason);
+            }
+        }
+
+        function handleStationSuccess(n) {
+            clearInterval(state.stageCountdownInterval);
+            // Stations 1-4 = 9 pts, 5-12 = 8 pts -> Total 100
+            const pts = (n <= 4) ? 9 : 8;
+            state.score = Math.min(100, state.score + pts);
+            updateProgress();
+
+            playTone(523.25, 0.1);
+            setTimeout(() => playTone(659.25, 0.1), 100);
+            setTimeout(() => playTone(783.99, 0.25), 200);
+
+            const exp = stationExplanations[n - 1];
+            document.getElementById('exp-title').innerText = exp.title;
+            document.getElementById('exp-text').innerText = exp.text;
+            document.getElementById('modal-explanation').classList.remove('hidden');
+
+            state.modalCallback = () => {
+                if (n < state.totalStations) {
+                    openBriefingModal(n + 1);
+                } else {
+                    startQuizStage();
+                }
+            };
+        }
+
+        function handleStationError(reason) {
+            state.score = Math.max(0, state.score - 3);
+            updateProgress();
+            playTone(180, 0.35, 'sawtooth');
+
+            document.getElementById('wrong-answer-reason').innerText = reason;
+            document.getElementById('modal-wrong-answer').classList.remove('hidden');
+        }
+
+        function closeExplanationModal() {
+            document.getElementById('modal-explanation').classList.add('hidden');
+            if (typeof state.modalCallback === 'function') {
+                state.modalCallback();
+                state.modalCallback = null;
+            }
+        }
+
+        function startQuizStage() {
+            document.querySelectorAll('.station-node').forEach(el => el.classList.add('hidden'));
+            document.getElementById('hud-progress-container').classList.add('hidden');
+            document.getElementById('screen-quiz').classList.remove('hidden');
+            state.quizIndex = 0;
+            renderQuizItem();
+        }
+
+        function shuffle(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function renderQuizItem() {
+            startStageCountdown();
+            const item = quizQuestionsData[state.quizIndex];
+            document.getElementById('quiz-counter').innerText = `שאלה ${state.quizIndex + 1} מתוך ${quizQuestionsData.length}`;
+            document.getElementById('quiz-question-text').innerText = item.q;
+
+            const container = document.getElementById('quiz-options-container');
+            container.innerHTML = '';
+
+            const options = [
+                { text: item.correct, isCorrect: true },
+                { text: item.distractors[0], isCorrect: false },
+                { text: item.distractors[1], isCorrect: false },
+                { text: item.distractors[2], isCorrect: false }
+            ];
+
+            const shuffledOptions = shuffle(options);
+            const letters = ['א', 'ב', 'ג', 'ד'];
+
+            shuffledOptions.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'w-full text-right p-2.5 rounded-xl border border-slate-300 bg-white hover:border-il-blue hover:bg-blue-50 transition text-[11px] font-black text-slate-800 flex items-center justify-between group shadow-sm active:scale-[0.99]';
+                btn.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <span class="w-5 h-5 rounded-full bg-slate-100 group-hover:bg-il-blue group-hover:text-white flex items-center justify-center font-black text-[10px] border border-slate-300 transition shrink-0">${letters[idx]}</span>
+                        <span class="leading-tight">${opt.text}</span>
+                    </div>
+                `;
+                btn.onclick = () => handleQuizSelection(opt.isCorrect, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function handleQuizSelection(isCorrect, element) {
+            if (isCorrect) {
+                clearInterval(state.stageCountdownInterval);
+                element.className = 'w-full text-right p-2.5 rounded-xl border border-emerald-600 bg-emerald-50 text-emerald-900 transition text-[11px] font-black flex items-center justify-between shadow-sm';
+                playTone(784, 0.2);
+
+                setTimeout(() => {
+                    state.quizIndex++;
+                    if (state.quizIndex < quizQuestionsData.length) {
+                        renderQuizItem();
+                    } else {
+                        endGame();
+                    }
+                }, 400);
+            } else {
+                element.className = 'w-full text-right p-2.5 rounded-xl border border-rose-400 bg-rose-50 text-rose-800 transition text-[11px] font-black flex items-center justify-between shadow-sm';
+                handleStationError("התשובה שבחרתם אינה נכונה לפי כללי הבחירות בישראל.");
+            }
+        }
+
+        function endGame() {
+            clearInterval(state.elapsedInterval);
+            clearInterval(state.stageCountdownInterval);
+
+            document.querySelectorAll('.station-node').forEach(el => el.classList.add('hidden'));
+            document.getElementById('screen-quiz').classList.add('hidden');
+            document.getElementById('hud-stats').classList.add('hidden');
+            document.getElementById('hud-progress-container').classList.add('hidden');
+
+            const mm = String(Math.floor(state.secondsElapsed / 60)).padStart(2, '0');
+            const ss = String(state.secondsElapsed % 60).padStart(2, '0');
+
+            document.getElementById('res-team').innerText = state.team;
+            document.getElementById('res-members').innerText = state.members;
+            document.getElementById('res-score').innerText = `${state.score} מתוך 100`;
+            document.getElementById('res-time').innerText = `${mm}:${ss} דקות`;
+
+            document.getElementById('screen-victory').classList.remove('hidden');
+            playTone(523, 0.15);
+            setTimeout(() => playTone(659, 0.15), 150);
+            setTimeout(() => playTone(784, 0.3), 300);
+        }
+
+        function handleParallax(e) {
+            if (window.innerWidth < 640 || !e) return;
+            try {
+                const chassis = document.getElementById('main-chassis');
+                if (!chassis) return;
+                const x = (e.clientX / window.innerWidth - 0.5) * 2;
+                const y = (e.clientY / window.innerHeight - 0.5) * 2;
+                chassis.style.transform = `rotateY(${x * 3.5}deg) rotateX(${-y * 3}deg) translateZ(5px)`;
+            } catch (err) {}
+        }
+        window.addEventListener('mousemove', handleParallax, { passive: true });
+    </script>
+</body>
+</html>
